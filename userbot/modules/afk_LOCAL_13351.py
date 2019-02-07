@@ -24,15 +24,9 @@ async def mention_afk(e):
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
                         "Again😬! Jeepeo😎 is not here. "
                         "I will say to him when he comes BACK!. "
                         "He told me that He is```"
-=======
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                         + AFKREASON
                         + "```"
                     )
@@ -61,15 +55,9 @@ async def afk_on_pm(e):
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
                         "Again😬! Jeepeo😎 is not here. "
                         "I will say to him when he comes BACK!. "
                         "He told me that He is```"
-=======
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                         + AFKREASON
                         + "```"
                     )
@@ -190,8 +178,4 @@ async def type_afk_is_not_true(e):
                 )
         COUNT_MSG = 0
         USERS = {}
-<<<<<<< HEAD
         AFKREASON = "Not Online"
-=======
-        AFKREASON = "No Reason"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)

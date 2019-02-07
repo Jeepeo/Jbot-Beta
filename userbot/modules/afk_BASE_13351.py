@@ -1,6 +1,6 @@
 import time
 
-from telethon import events
+from telethon import TelegramClient, events
 from telethon.events import StopPropagation
 
 from userbot import (AFKREASON, COUNT_MSG, ISAFK, LOGGER, LOGGER_GROUP, USERS,
@@ -15,24 +15,16 @@ async def mention_afk(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "SaD! 😐 , Jeepeo😎 is not here becoZ He is```"
+                    "Sorry! My boss is AFK due to ```"
                     + AFKREASON
-                    + "```. I will ping him when he comes back ! 😝 "
+                    + "```. Would ping him to look into the message soon😉"
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
-                        "Again😬! Jeepeo😎 is not here. "
-                        "I will say to him when he comes BACK!. "
-                        "He told me that He is```"
-=======
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
+                        "Sorry! But my boss is still not here. Try to ping him a little later. I am sorry😖. He told me he was busy with ```"
                         + AFKREASON
                         + "```"
                     )
@@ -52,24 +44,16 @@ async def afk_on_pm(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "SaD! 😐 , Jeepeo😎 is not here becoZ He is ```"
+                    "Sorry! My boss is AFK due to ```"
                     + AFKREASON
-                    + "```I will ping him when he comes back ! 😝 "
+                    + "``` I'll ping him to look into the message soon😉"
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
-                        "Again😬! Jeepeo😎 is not here. "
-                        "I will say to him when he comes BACK!. "
-                        "He told me that He is```"
-=======
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
+                        "Sorry! But my boss is still not here. Try to ping him a little later. I am sorry😖. He told me he was busy with ```"
                         + AFKREASON
                         + "```"
                     )
@@ -93,8 +77,7 @@ async def not_afk(e):
         x=await e.respond(
             "`You recieved "
             + str(COUNT_MSG)
-            + " messages while you were away. Check log for more details.`"
-            + "`This auto-generated message shall be self destructed in 2 seconds.`"
+            + " messages while you were away. Check log for more details. This auto-generated message shall be self destructed in 2 seconds.`"
         )
         time.sleep(2)
         await x.delete()
@@ -124,7 +107,7 @@ async def not_afk(e):
                 )
         COUNT_MSG = 0
         USERS = {}
-        AFKREASON = "Not Online"
+        AFKREASON = "No Reason"
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.afk"))
@@ -149,49 +132,44 @@ async def set_afk(e):
 @bot.on(events.NewMessage(outgoing=True))
 @bot.on(events.MessageEdited(outgoing=True))
 async def type_afk_is_not_true(e):
-    global ISAFK
-    global COUNT_MSG
-    global USERS
-    global AFKREASON
-    if ISAFK:
-        ISAFK = False
-        await e.respond("I'm no longer AFK.")
-        x = await e.respond(
-            "`You recieved "
-            + str(COUNT_MSG)
-            + " messages while you were away. Check log for more details.`"
-            + "`This auto-generated message shall be self destructed in 2 seconds.`"
-        )
-        time.sleep(2)
-        await x.delete()
-        if LOGGER:
-            await bot.send_message(
-                LOGGER_GROUP,
-                "You've recieved "
+        global ISAFK
+        global COUNT_MSG
+        global USERS
+        global AFKREASON
+        if ISAFK:
+            ISAFK = False
+            await e.respond("I'm no longer AFK.")
+            x=await e.respond(
+                "`You recieved "
                 + str(COUNT_MSG)
-                + " messages from "
-                + str(len(USERS))
-                + " chats while you were away",
+                + " messages while you were away. Check log for more details. This auto-generated message shall be self destructed in 2 seconds.`"
             )
-            for i in USERS:
-                name = await bot.get_entity(i)
-                name0 = str(name.first_name)
+            time.sleep(2)
+            await x.delete()
+            if LOGGER:
                 await bot.send_message(
                     LOGGER_GROUP,
-                    "["
-                    + name0
-                    + "](tg://user?id="
-                    + str(i)
-                    + ")"
-                    + " sent you "
-                    + "`"
-                    + str(USERS[i])
-                    + " messages`",
+                    "You've recieved "
+                    + str(COUNT_MSG)
+                    + " messages from "
+                    + str(len(USERS))
+                    + " chats while you were away",
                 )
-        COUNT_MSG = 0
-        USERS = {}
-<<<<<<< HEAD
-        AFKREASON = "Not Online"
-=======
-        AFKREASON = "No Reason"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
+                for i in USERS:
+                    name = await bot.get_entity(i)
+                    name0 = str(name.first_name)
+                    await bot.send_message(
+                        LOGGER_GROUP,
+                        "["
+                        + name0
+                        + "](tg://user?id="
+                        + str(i)
+                        + ")"
+                        + " sent you "
+                        + "`"
+                        + str(USERS[i])
+                        + " messages`",
+                    )
+            COUNT_MSG = 0
+            USERS = {}
+            AFKREASON = "No Reason"
