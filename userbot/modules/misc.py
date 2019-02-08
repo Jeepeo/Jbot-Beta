@@ -41,7 +41,7 @@ async def paste(pstl):
 
         textx = await pstl.get_reply_message()
         message = pstl.text
-        await pstl.edit("`Pasting text . . .`")
+        await pstl.edit("`Jeepeo😎 is Pasting text . . .`")
         if message[7:]:
             message = str(message[7:])
         elif textx:
@@ -128,7 +128,7 @@ async def log(e):
         message = str(message.message)
         if LOGGER:
             await (await e.get_reply_message()).forward_to(LOGGER_GROUP)
-            await e.edit("`Logged Successfully`")
+            await e.edit("`Jeepeo😎 is Logged Successfully`")
         else:
             await e.edit("`This feature requires Logging to be enabled!`")
         time.sleep(2)
@@ -183,7 +183,7 @@ async def hash(e):
                 e.chat_id,
                 "hashes.txt",
                 reply_to=e.id,
-                caption="`It's too big, in a text file and hastebin instead. `"
+                caption="`Ooof!😐 , Jeepeo😎 It's too big, in a text file and hastebin instead. `"
                 + hastebin.post(ans[1:-1]),
             )
             subprocess.run(["rm", "hashes.txt"], stdout=subprocess.PIPE)
@@ -222,7 +222,7 @@ async def randomise(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.alive$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`Master! I am alive😁`")
+        await e.edit("`Yø Jêēpéo😎 , Ì ám älive😋`")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.chatid$"))
@@ -235,7 +235,7 @@ async def chatidgetter(e):
 @bot.on(events.NewMessage(outgoing=True, pattern="^.updatebleeding$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.updatebleding$"))
 async def bleeding_upstream(e):
-    await e.edit("`Please wait while I upstream myself!`")
+    await e.edit("`Please wait Jeepeo😎! while I upstream myself!`")
     bot.disconnect()
     try:
         subprocess.run(["python", "-m", "userbot", "test", "haha"])
@@ -245,7 +245,7 @@ async def bleeding_upstream(e):
 @bot.on(events.NewMessage(outgoing=True, pattern="^.updatestable$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.updatestable$"))
 async def stable_upstream(e):
-    await e.edit("`Please wait while I upstream myself!`")
+    await e.edit("`Please wait Jeepeo😎 while I upstream myself!`")
     bot.disconnect()
     try:
         subprocess.run(["python", "-m", "userbot", "test", "haha", "yes"])
@@ -257,10 +257,10 @@ async def stable_upstream(e):
 async def pingme(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         start = datetime.now()
-        await e.edit("`Pong!`")
+        await e.edit("`JeepPong!😎`")
         end = datetime.now()
         ms = (end - start).microseconds / 1000
-        await e.edit("Pong!\n%sms" % (ms))
+        await e.edit("JeepPong!😎|\n%sms" % (ms))
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.sleep( [0-9]+)?$"))
@@ -294,7 +294,7 @@ async def killdabot(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.support$"))
 async def bot_support(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("Report bugs here: @userbot_support")
+        await e.edit("Report Damn bugs here: @userbot_support")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.repo$"))
