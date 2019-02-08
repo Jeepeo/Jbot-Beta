@@ -1,17 +1,18 @@
-from telethon import events
+import asyncio
 import json
 import os
 import subprocess
-import requests
-import asyncio
 from datetime import datetime
+
+import requests
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from userbot import bot, LOGS
-from telethon.tl.types import DocumentAttributeVideo
-from telethon.errors import MessageNotModifiedError
 from PIL import Image
+from telethon import events
+from telethon.errors import MessageNotModifiedError
+from telethon.tl.types import DocumentAttributeVideo
 
+from userbot import LOGS, bot
 
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./")
 
@@ -89,7 +90,7 @@ async def _(e):
         if os.path.exists(input_str):
             start = datetime.now()
             await e.edit("Processing ...")
-            lst_of_files = get_lst_of_files(input_str, [])
+            lst_of_files = lst_of_files(input_str, [])
             LOGS.info(lst_of_files)
             u = 0
             await e.edit(
@@ -152,12 +153,19 @@ async def _(e):
 
 
 @bot.on(events.NewMessage(pattern=r".upload (.*)", outgoing=True))
+@bot.on(events.MessageEdited(pattern=r".upload (.*)", outgoing=True))
 async def _(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         if e.fwd_from:
             return
+        if e.is_channel and not e.is_group:
+            await e.edit("`Uploading isn't permitted on channels`")
+            return
         await e.edit("Processing ...")
         input_str = e.pattern_match.group(1)
+        if input_str in ("userbot.session", "config.env"):
+            await e.edit("`That's a dangerous operation! Not Permitted!`")
+            return
         if os.path.exists(input_str):
             start = datetime.now()
             await bot.send_file(

@@ -1,14 +1,17 @@
+import os
+import re
+import subprocess
+import time
+from datetime import datetime, timedelta
+
+import urbandict
 import wikipedia
 from google_images_download import google_images_download
-import urbandict
-import subprocess
-import re
-from datetime import datetime, timedelta
-from telethon import TelegramClient, events
-from userbot import bot, LOGGER, LOGGER_GROUP
-from gtts import gTTS
-import os,time
 from googletrans import Translator
+from gtts import gTTS
+from telethon import TelegramClient, events
+
+from userbot import LOGGER, LOGGER_GROUP, bot
 
 langi = "en"
 
@@ -147,7 +150,7 @@ async def translateme(e):
             message = textx
             message = str(message.message)
         reply_text = translator.translate(message, dest=langi).text
-        reply_text = "`Source: `\n" + message + "`\n\nTranslation: `\n" + reply_text
+        reply_text = "**Source:** `\n" + message + "**\n\nTranslation: **\n" + reply_text
         await bot.send_message(e.chat_id, reply_text)
         await e.delete()
         if LOGGER:

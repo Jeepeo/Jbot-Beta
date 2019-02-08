@@ -1,10 +1,14 @@
-from zalgo_text import zalgo
-import random, re
-from userbot import bot, ENABLE_KILLME, WIDE_MAP
-from userbot import LOGGER, LOGGER_GROUP, DISABLE_RUN
-from telethon import TelegramClient, events
-from spongemock import spongemock
+import asyncio
+import random
+import re
 import time
+
+from spongemock import spongemock
+from telethon import TelegramClient, events
+from zalgo_text import zalgo
+
+from userbot import (DISABLE_RUN, ENABLE_KILLME, LOGGER, LOGGER_GROUP,
+                     WIDE_MAP, bot)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^:/$"))
@@ -149,7 +153,7 @@ async def hoi(e):
 async def faces(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         textx = await e.get_reply_message()
-        message=e.text
+        message = e.text
         if message[5:]:
             message = str(message[5:])
         elif textx:
@@ -397,3 +401,29 @@ async def bluetext(e):
         await e.edit(
             "`BLUETEXT MUST CLICK.\nAre you a stupid animal which is attracted to colours?`"
         )
+
+
+@bot.on(events.NewMessage(pattern='^(?i).type'))
+@bot.on(events.MessageEdited(pattern='^(?i).type'))
+async def typewriter(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        textx = await e.get_reply_message()
+        message = e.text
+
+        if message[6:]:
+            message = str(message[6:])
+        elif textx:
+            message = textx
+            message = str(message.message)
+        sleep_time = 0.1
+        index = 1
+        old_text = ''
+        msg = await e.edit('|')
+        await asyncio.sleep(sleep_time)
+        while old_text != message:
+            old_text = message[:index]
+            index += 1
+            await msg.edit('`%s`' % (old_text + '|'))
+            await asyncio.sleep(sleep_time)
+            await msg.edit('`%s`' % (old_text.strip()))
+            await asyncio.sleep(sleep_time)

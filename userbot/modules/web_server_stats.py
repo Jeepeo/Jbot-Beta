@@ -1,11 +1,13 @@
 #########
 
-##PULLING THIS FILE IS NO WAY USEFUL, THIS IS EXCLUSIVELY FOR MY USE
+## PULLING THIS FILE IS NO WAY USEFUL, THIS IS EXCLUSIVELY FOR MY USE
 
 ########
 import subprocess
+
 from telethon import events
-from userbot import bot, LOGGER, LOGGER_GROUP
+
+from userbot import LOGGER, LOGGER_GROUP, bot
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern=".webserverstat"))

@@ -1,39 +1,122 @@
-import hastebin
-import pybase64
-import random, re, os, signal
-import subprocess, time, sys
-from userbot import bot
+import asyncio
+import io
+import random
+import re
+import subprocess
+import sys
 import time
 from datetime import datetime
-from telethon import TelegramClient, events
-from userbot.modules.rextester.api import CompilerError, Rextester
-from userbot import LOGGER, LOGGER_GROUP
+
+import hastebin
+import pybase64
+import requests
+from telethon import events
+
+from userbot import LOGGER, LOGGER_GROUP, bot
+from userbot.modules.rextester.api import Rextester, UnknownLanguage
+
+DOGBIN_URL = "https://del.dog/"
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.pip (.+)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.pip (.+)"))
-async def pipcheck(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        a = await e.reply("`Searching . . .`")
-        r = (
+async def pipcheck(pip):
+    if not pipe.text[0].isalpha() and pip.text[0] not in ("/", "#", "@", "!"):
+        await e.reply("`Searching . . .`")
+        pipc = (
             "`"
             + subprocess.run(
                 ["pip3", "search", e.pattern_match.group(1)], stdout=subprocess.PIPE
             ).stdout.decode()
             + "`"
         )
-        await e.edit(r)
+        await pip.edit(pipc)
 
 
-######Will put del.dog later lmao sorry Tillie
-@bot.on(events.NewMessage(outgoing=True, pattern="^.paste?(\\s)"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.paste?(\\s)"))
-async def haste_paste(e):
+@bot.on(events.NewMessage(outgoing=True, pattern="^.paste"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.paste"))
+async def paste(pstl):
+    if not pstl.text[0].isalpha() and pstl.text[0] not in ("/", "#", "@", "!"):
+        dogbin_final_url = ""
+
+        textx = await pstl.get_reply_message()
+        message = pstl.text
+        await pstl.edit("`Pasting text . . .`")
+        if message[7:]:
+            message = str(message[7:])
+        elif textx:
+            message = str(textx.message)
+
+        # Dogbin
+        r = requests.post(DOGBIN_URL + "documents", data=message.encode('utf-8'))
+
+        # Hastebin
+        try:
+            hastebin_final_url = hastebin.post(message)
+        except Exception:
+            hastebin_final_url = "`Failed to reach hastebin`"
+
+        if r.status_code == 200:
+            response = r.json()
+            key = response['key']
+            dogbin_final_url = DOGBIN_URL + key
+
+            if response['isUrl']:
+                reply_text = f'`Pasted successfully!`\n\n`Shortened URL:` {dogbin_final_url}\n\n`Original(non-shortened) URLs`\n`Dogbin URL`: {DOGBIN_URL}v/{key}\n`Hastebin URL`: {hastebin_final_url}'
+            else:
+                reply_text = f'`Pasted successfully!`\n\n`Dogbin URL`: {dogbin_final_url}\n`Hastebin URL`: {hastebin_final_url}'
+        else:
+            reply_text = f'`Pasted successfully!`\n\n`Dogbin URL`: `Failed to reach dogbin`\n`Hastebin URL`: {hastebin_final_url}'
+
+
+        await pstl.edit(reply_text)
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                "Paste query `" + message + "` was executed successfully",
+            )
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.get_dogbin_content"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.get_dogbin_content"))
+async def get_dogbin_content(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        textx = await e.get_reply_message()
         message = e.text
-        await e.edit("`Pasting text . . .`")
-        text = str(message[7:])
-        await e.edit("`Paste successful! Check it here: `" + hastebin.post(text))
+        await e.edit("`Getting dogbin content . . .`")
+        if message[7:]:
+            message = str(message[20:])
+        elif textx:
+            message = str(textx.message)
+
+        format_normal = f'{DOGBIN_URL}'
+        format_view = f'{DOGBIN_URL}v/'
+
+        if message.startswith(format_view):
+            message = message[len(format_view):]
+        elif message.startswith(format_normal):
+            message = message[len(format_normal):]
+
+        r = requests.get(f'{DOGBIN_URL}raw/{message}')
+
+        if r.status_code != 200:
+            try:
+                res = r.json()
+                await e.reply(res['message'])
+            except Exception:
+                if r.status_code == 404:
+                    await e.edit('`Failed to reach dogbin`')
+                else:
+                    await e.edit('`Unknown error occured`')
+            r.raise_for_status()
+
+        reply_text = "`Fetched dogbin URL content successfully!`\n\n`Content:` " + r.text
+
+        await e.reply(reply_text)
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                "Get dogbin content query for `" + message + "` was executed successfully",
+            )
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.log"))
@@ -151,7 +234,7 @@ async def chatidgetter(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.updatebleeding$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.updatebleding$"))
-async def restart_the_bot(e):
+async def bleeding_upstream(e):
     await e.edit("`Please wait while I upstream myself!`")
     bot.disconnect()
     try:
@@ -161,7 +244,7 @@ async def restart_the_bot(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.updatestable$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.updatestable$"))
-async def restart_the_bot(e):
+async def stable_upstream(e):
     await e.edit("`Please wait while I upstream myself!`")
     bot.disconnect()
     try:
@@ -182,9 +265,9 @@ async def pingme(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.sleep( [0-9]+)?$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.sleep( [0-9]+)?$"))
-async def killdabot(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
+async def sleepybot(e):
+    message = e.text
+    if not message[0].isalpha() and message[0] not in ("/", "#", "@", "!"):
         if not " " in e.pattern_match.group(1):
             await e.reply("Syntax: `.shutdown [seconds]`")
         else:
@@ -228,11 +311,11 @@ async def support_channel(e):
         await e.edit("t.me/maestro_userbot_channel")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.sysdetails$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.sysdetails$"))
-async def sysdetails(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        r = (
+@bot.on(events.NewMessage(outgoing=True, pattern="^.sysd$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.sysd$"))
+async def sysdetails(sysd):
+    if not sysd.text[0].isalpha() and sysd.text[0] not in ("/", "#", "@", "!"):
+        neo = (
             "`"
             + subprocess.run(
                 [
@@ -252,11 +335,11 @@ async def sysdetails(e):
             ).stdout.decode()
             + "`"
         )
-        await e.edit(r)
+        await sysd.edit(neo)
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.botversion$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.botversion$"))
+@bot.on(events.NewMessage(outgoing=True, pattern="^.botver$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.botver$"))
 async def bot_ver(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`UserBot Version: Modular r2.1.1-b`")
@@ -281,38 +364,120 @@ async def chatidgetter(e):
                     name = "@" + message.forward.sender.username
                 else:
                     name = "*" + message.forward.sender.first_name + "*"
-            await e.edit("**Name:** {} \n**User ID:** `{}`".format(name, user_id))
+            await e.edit(
+                "**Name:** {} \n**User ID:** `{}`"
+                .format(name, user_id)
+            )
+
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^\$"))
 async def rextestercli(e):
     stdin = ""
     message = e.text
+    chat = await e.get_chat()
 
     if len(message.split()) > 1:
-        regex = re.search('^\$([\w.#+]+)\s+([\s\S]+?)(?:\s+\/stdin\s+([\s\S]+))?$', message, re.IGNORECASE)
+        regex = re.search(
+            r"^\$([\w.#+]+)\s+([\s\S]+?)(?:\s+\/stdin\s+([\s\S]+))?$",
+            message,
+            re.IGNORECASE,
+        )
         language = regex.group(1)
         code = regex.group(2)
         stdin = regex.group(3)
 
-
-
         try:
-            regexter = Rextester(language, code, stdin)
-        except CompilerError as exc:
+            rextester = Rextester(language, code, stdin)
+            res = await rextester.exec()
+        except UnknownLanguage as exc:
             await e.edit(str(exc))
             return
 
         output = ""
-        output += "**Language:**\n```{}```".format(language)
-        output += "\n\n**Source:** \n```{}```".format(code)
+        output += f"**Language:**\n```{language}```"
+        output += f"\n\n**Source:** \n```{code}```"
 
-        if regexter.result:
-            output += "\n\n**Result:** \n```{}```".format(regexter.result)
+        if res.result:
+            output += f"\n\n**Result:** \n```{res.result}```"
 
-        if regexter.warnings:
-            output += "\n\n**Warnings:** \n```{}```\n".format(regexter.warnings)
+        if res.warnings:
+            output += f"\n\n**Warnings:** \n```{res.warnings}```\n"
 
-        if regexter.errors:
-            output += "\n\n**Errors:** \n'```{}```".format(regexter.errors)
+        if res.errors:
+            output += f"\n\n**Errors:** \n'```{res.errors}```"
+
+        if len(res.result) > 4096:
+            with io.BytesIO(str.encode(res.result)) as out_file:
+                out_file.name = "result.txt"
+                await bot.send_file(chat.id, file = out_file)
+                await e.edit(code)
+            return
 
         await e.edit(output)
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.unmutechat$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.unmutechat$"))
+async def unmute_chat(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        try:
+            from userbot.modules.sql_helper.keep_read_sql import unkread
+        except:
+            await e.edit('`Running on Non-SQL Mode!`')
+        unkread(str(e.chat_id))
+        await e.edit("```Unmuted this chat Successfully```")
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.mutechat$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.mutechat$"))
+async def mute_chat(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        try:
+            from userbot.modules.sql_helper.keep_read_sql import kread
+        except Exception as er:
+            print(er)
+            await e.edit("`Running on Non-SQL mode!`")
+            return
+        await e.edit(str(e.chat_id))
+        kread(str(e.chat_id))
+        await e.edit("`Shush! This chat will be silenced!`")
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                str(e.chat_id) + " was silenced.")
+
+
+@bot.on(events.NewMessage(incoming=True))
+@bot.on(events.MessageEdited(incoming=True))
+async def keep_read(e):
+    try:
+        from userbot.modules.sql_helper.keep_read_sql import is_kread
+    except:
+        return
+    K = is_kread()
+    if K:
+        for i in K:
+            if i.groupid == str(e.chat_id):
+                await bot.send_read_acknowledge(e.chat_id)
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.botlog$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.botlog$"))
+async def botlogs(e):
+    process = await asyncio.create_subprocess_shell(
+        "sudo systemctl status userbot | tail -n 20",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+        )
+
+    stdout, stderr = await process.communicate()
+    result = str(stdout.decode().strip())
+    f = open("err.log", "w+")
+    f.write(result)
+    f.close()
+    await bot.send_file(
+        e.chat_id,
+        "err.log",
+        reply_to=e.id,
+        caption="`Bot logs are here!`",
+    )
