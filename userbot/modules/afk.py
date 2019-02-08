@@ -15,18 +15,18 @@ async def mention_afk(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "Sorry! My boss is AFK due to ```"
+                    "SaD! 😐 , Jeepeo😎 is not here becoZ He is```"
                     + AFKREASON
-                    + "```. Would ping him to look into the message soon😉"
+                    + "```. I will ping him when he comes back ! 😝 "
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
+                        "Again😬! Jeepeo😎 is not here. "
+                        "I will say to him when he comes BACK!. "
+                        "He told me that He is```"
                         + AFKREASON
                         + "```"
                     )
@@ -46,18 +46,18 @@ async def afk_on_pm(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "Sorry! My boss is AFK due to ```"
+                    "SaD! 😐 , Jeepeo😎 is not here becoZ He is ```"
                     + AFKREASON
-                    + "``` I'll ping him to look into the message soon😉"
+                    + "```I will ping him when he comes back ! 😝 "
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-                        "Sorry! But my boss is still not here. "
-                        "Try to ping him a little later. I am sorry😖."
-                        "He told me he was busy with ```"
+                        "Again😬! Jeepeo😎 is not here. "
+                        "I will say to him when he comes BACK!. "
+                        "He told me that He is```"
                         + AFKREASON
                         + "```"
                     )
@@ -112,7 +112,7 @@ async def not_afk(e):
                 )
         COUNT_MSG = 0
         USERS = {}
-        AFKREASON = "No Reason"
+        AFKREASON = "Not Online"
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.afk"))
@@ -178,4 +178,4 @@ async def type_afk_is_not_true(e):
                 )
         COUNT_MSG = 0
         USERS = {}
-        AFKREASON = "No Reason"
+        AFKREASON = "Not Online"
