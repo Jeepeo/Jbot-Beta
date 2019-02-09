@@ -232,6 +232,7 @@ async def chatidgetter(e):
         await e.edit("Chat ID: `" + str(e.chat_id) + "`")
 
 
+<<<<<<< HEAD
 @bot.on(events.NewMessage(outgoing=True, pattern="^.updatebleeding$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.updatebleding$"))
 async def bleeding_upstream(e):
@@ -252,6 +253,8 @@ async def stable_upstream(e):
     except:
         pass
 
+=======
+>>>>>>> e18c30a... userbot: modules: upstream: split upstream command to their own module
 @bot.on(events.NewMessage(outgoing=True, pattern="^.pingme$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.pingme$"))
 async def pingme(e):
