@@ -403,21 +403,12 @@ async def bluetext(e):
         )
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(pattern='^(?i).$$'))
-@bot.on(events.MessageEdited(pattern='^(?i).$$'))
-async def typewriter(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
-=======
 @bot.on(events.NewMessage(pattern='(?i).type'))
 @bot.on(events.MessageEdited(pattern='(?i).type'))
 async def typewriter(typew):
     if not typew.text[0].isalpha() and typew.text[0] not in ("/", "#", "@", "!"):
         textx = await typew.get_reply_message()
         message = typew.text
->>>>>>> 8373277... userbot: modules: memes: optimize TypeWriter
 
         if message[6:]:
             message = str(message[6:])
