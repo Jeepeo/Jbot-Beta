@@ -32,8 +32,6 @@ async def permitpm(e):
                  "`As I know , He doesn't reply to shit/retards😤.`"
                 )
 
-                if NOTIF_OFF:
-                    await bot.send_read_acknowledge(e.chat_id)
                 if e.chat_id not in COUNT_PM:
                     COUNT_PM.update({e.chat_id: 1})
                 else:
