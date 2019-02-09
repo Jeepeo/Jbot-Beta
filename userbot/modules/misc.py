@@ -323,7 +323,7 @@ async def sysdetails(sysd):
 async def bot_ver(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         ver = (
-            "`UserBot Version: "
+            "`UserBot Version: modular 2.2-a (Jeepeo-Edition😎) "
             + subprocess.run(
                 [
                     "git",
