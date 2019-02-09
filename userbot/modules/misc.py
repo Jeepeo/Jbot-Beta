@@ -41,11 +41,7 @@ async def paste(pstl):
 
         textx = await pstl.get_reply_message()
         message = pstl.text
-<<<<<<< HEAD
         await pstl.edit("`Jeepeo😎 is Pasting text . . .`")
-=======
-        await pstl.edit("`Pasting text . . .`")
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
         if message[7:]:
             message = str(message[7:])
         elif textx:
