@@ -4,11 +4,8 @@ import subprocess
 
 import hastebin
 from telethon import TelegramClient, events
-<<<<<<< HEAD
-=======
 from userbot import bot
 from userbot import SUBPROCESS_ANIM
->>>>>>> a865fe0... Add new and cool term module from https://github.com/nitanmarcel/TelegramCompanion
 from telethon.events import StopPropagation
 
 from userbot import *
