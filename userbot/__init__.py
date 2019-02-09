@@ -111,14 +111,9 @@ except NameError:
     API_KEY = os.environ.get("API_KEY", None)
 
     API_HASH = os.environ.get("API_HASH", None)
-<<<<<<< HEAD
 
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
-
-=======
     SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
->>>>>>> a865fe0... Add new and cool term module from https://github.com/nitanmarcel/TelegramCompanion
     LOGGER = os.environ.get(
         "LOGGER", None
     )  # Incase you want to turn off logging, put this to false
