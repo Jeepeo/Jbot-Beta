@@ -20,30 +20,31 @@ async def permitpm(e):
             apprv = is_approved(e.chat_id)
 
             if not apprv and e.text != \
-                ("`Don't Afraid!😳 This is Jeepeo😎's BOT\n\n`"
-                 "`Jeepeo😎 hasn't approved you to PM😢.`"
-                 "`Please wait for Jeepeo😎 to look in, he would mostly approve PMs😲.`\n\n"
-                 "`As I know , He doesn't reply to shit/retards😤.`"):
+                ("`Bleep Blop! This is a Bot. Don't fret. \n\n`"
+                 "`My Master hasn't approved you to PM.`"
+                 "`Please wait for my Master to look in, he would mostly approve PMs.`\n\n"
+                 "`As far as i know, he doesn't usually approve Retards.`"):
 
                 await e.reply(
-                ("`Don't Afraid!😳 This is Jeepeo😎's BOT\n\n`"
-                 "`Jeepeo😎 hasn't approved you to PM😢.`"
-                 "`Please wait for Jeepeo😎 to look in, he would mostly approve PMs😲.`\n\n"
-                 "`As I know , He doesn't reply to shit/retards😤.`"
+                    "`Bleep Blop! This is a Bot. Don't fret. \n\n`"
+                    "`My Master hasn't approved you to PM.`"
+                    "`Please wait for my Master to look in, he would mostly approve PMs.`\n\n"
+                    "`As far as i know, he doesn't usually approve Retards.`"
                 )
 
+                if NOTIF_OFF:
+                    await bot.send_read_acknowledge(e.chat_id)
                 if e.chat_id not in COUNT_PM:
                     COUNT_PM.update({e.chat_id: 1})
                 else:
                     COUNT_PM[e.chat_id] = COUNT_PM[e.chat_id] + 1
                 if COUNT_PM[e.chat_id] > 4:
                     await e.respond(
-                        "`You were spamming Jeepeo😎's PM, which I don't like.`"
+                        "`You were spamming my Master's PM, which I don't like.`"
                         "`I'mma Report Spam.`"
                     )
                     del COUNT_PM[e.chat_id]
                     await bot(BlockRequest(e.chat_id))
-                    await bot(ReportSpamRequest(peer='e.chat_id'))
                     if LOGGER:
                         name = await bot.get_entity(e.chat_id)
                         name0 = str(name.first_name)
