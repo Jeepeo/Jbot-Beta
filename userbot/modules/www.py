@@ -4,6 +4,8 @@ from telethon import events, functions
 
 from userbot import bot
 
+import subprocess
+
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.speed$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.speed$"))
