@@ -107,17 +107,12 @@ async def thanos(bon):
             embed_links=True,
         )
 
-<<<<<<< HEAD
-        if bon.reply_to_msg_id in BRAIN_CHECKER:
-            await bon.edit("`Ban Error! I am not supposed to ban this user`")
-=======
         reply_id = await bon.get_reply_message().sender_id
         try:
             if reply_id in BRAIN_CHECKER:
                 await bon.edit("`Ban Error! I am not supposed to ban this user`")
                 return
         except AttributeError:
->>>>>>> de05f4f... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler too
             return
 
         await bon.edit("`Whacking the pest!`")
