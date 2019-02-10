@@ -33,7 +33,7 @@ async def promote(promt):
             rights = rights2
         elif not rights and not rights3:
             rights = None
-        await promt.edit("`Trying a promote.....`")
+        await promt.edit("`Bitch! You are being promoted.....`")
         time.sleep(3)
 
         try:
@@ -45,10 +45,10 @@ async def promote(promt):
 
         except BadRequestError:
             await promt.edit(
-                "`You Don't have sufficient permissions to parmod`"
+                "`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `"
                 )
             return
-        await promt.edit("`Promoted Successfully!`")
+        await promt.edit("`You Promoted Successfully!`")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
