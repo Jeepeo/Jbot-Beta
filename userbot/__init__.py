@@ -45,7 +45,7 @@ except NameError:
 
     SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
     
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
+   LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
    
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
