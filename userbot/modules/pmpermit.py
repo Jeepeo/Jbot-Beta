@@ -103,6 +103,6 @@ async def approvepm(apprvpm):
 @bot.on(events.NewMessage(outgoing=True,pattern="^.block$"))
 @bot.on(events.MessageEdited(outgoing=True,pattern="^.block$"))
 async def blockpm(block):
-    await block.respond("`You are gonna be blocked from PM-ing my Master!")
+    await block.respond("`You Bitch 😡 , You Now blocked to PM Jeepeo😎`")
     time.sleep(3)
     await bot(BlockRequest(block.chat_id))
