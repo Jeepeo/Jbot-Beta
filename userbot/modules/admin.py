@@ -33,7 +33,7 @@ async def promote(promt):
             rights = rights2
         elif not rights and not rights3:
             rights = None
-        await promt.edit("`Trying a promote.....`")
+        await promt.edit("`Hey😊,you are promoting.....`")
         time.sleep(3)
 
         try:
@@ -45,10 +45,10 @@ async def promote(promt):
 
         except BadRequestError:
             await promt.edit(
-                "`You Don't have sufficient permissions to parmod`"
+                "`Oof!Jeepeo😎 You are not admin in this **CANCEROUS** Group😐`"
                 )
             return
-        await promt.edit("`Promoted Successfully!`")
+        await promt.edit("`Promoted Successfully! By Jeepeo😎`")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
@@ -107,14 +107,6 @@ async def thanos(bon):
             embed_links=True,
         )
 
-<<<<<<< HEAD
-        reply_id = await bon.get_reply_message().sender_id
-        try:
-            if reply_id in BRAIN_CHECKER:
-                await bon.edit("`Ban Error! I am not supposed to ban this user`")
-                return
-        except AttributeError:
-=======
         sender = await bon.get_reply_message()
         try:
             if sender.sender_id in BRAIN_CHECKER:
@@ -122,21 +114,16 @@ async def thanos(bon):
                 return
         except AttributeError:
             await bon.edit("`You don't seems to do this right`")
->>>>>>> 6239efc... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler
             return
 
-        await bon.edit("`Whacking the pest!`")
+        await bon.edit("`Killing the Bug....`")
         time.sleep(5)
         try:
             await bot(
                 EditBannedRequest(
-<<<<<<< HEAD
-                    bon.chat_id, reply_id, rights
-=======
                     bon.chat_id,
                     sender.sender_id,
                     rights
->>>>>>> 6239efc... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler
                 )
             )
         except AttributeError:
@@ -150,7 +137,7 @@ async def thanos(bon):
                 return
 
         await bon.delete()
-        await bon.respond("`Banned!`")
+        await bon.respond("`The bitch is Banned!`")
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
