@@ -107,22 +107,12 @@ async def thanos(bon):
             embed_links=True,
         )
 
-<<<<<<< HEAD
         reply_id = await bon.get_reply_message().sender_id
         try:
             if reply_id in BRAIN_CHECKER:
                 await bon.edit("`Ban Error! I am not supposed to ban this user`")
                 return
         except AttributeError:
-=======
-        sender = await bon.get_reply_message()
-        try:
-            if sender.sender_id in BRAIN_CHECKER:
-                await bon.edit("`Ban Error! I am not supposed to ban this user`")
-                return
-        except AttributeError:
-            await bon.edit("`You don't seems to do this right`")
->>>>>>> 6239efc... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler
             return
 
         await bon.edit("`Whacking the pest!`")
@@ -130,13 +120,7 @@ async def thanos(bon):
         try:
             await bot(
                 EditBannedRequest(
-<<<<<<< HEAD
                     bon.chat_id, reply_id, rights
-=======
-                    bon.chat_id,
-                    sender.sender_id,
-                    rights
->>>>>>> 6239efc... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler
                 )
             )
         except AttributeError:
