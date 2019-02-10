@@ -400,18 +400,11 @@ async def claptext(memereview):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.bt$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.bt$"))
-<<<<<<< HEAD
-async def bluetext(e):
-    if await e.get_reply_message():
-        await e.edit(
-            "`BLUETEXT MUST CLICK.\nAre you a stupid animal which is attracted to colours?`"
-=======
 async def bluetext(bt):
     if await bt.get_reply_message():
         await bt.edit(
             "`BLUETEXT MUST CLICK.`\n"
             "`Are you a stupid animal which is attracted to colours?`"
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         )
 
 
