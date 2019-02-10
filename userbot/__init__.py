@@ -5,6 +5,7 @@ import os
 import logging
 import time
 import dotenv
+from distutils.util import strtobool as sb
 from alchemysession import AlchemySessionContainer
 from sqlalchemy import create_engine
 from telethon import TelegramClient, events
@@ -34,7 +35,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
         "You MUST have a python version of at least 3.6." \
         "Multiple features depend on this. Bot quitting."
     )
-    quit(1)
+    quit(
 try:
     print(___________PLOX_______REMOVE_____THIS_____LINE__________)
 except NameError:
@@ -43,14 +44,17 @@ except NameError:
     API_HASH = os.environ.get("API_HASH", None)
 
     SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
-    LOGGER = os.environ.get(
-        "LOGGER", None
-    )  # Incase you want to turn off logging, put this to false
+   LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
+    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
-    PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", None)
+    LOGGER = sb(os.environ.get(
+        "LOGGER", "False"
+    ))  # Incase you want to turn off logging, put this to false
 
-    CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", None)
+
+    PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
+
+    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
     DB_URI = os.environ.get("DB_URI", None)
 
