@@ -48,15 +48,9 @@ except NameError:
 
     API_HASH = os.environ.get("API_HASH", None)
 
-<<<<<<< HEAD
-    SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
-    LOGGER = os.environ.get(
-=======
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
     LOGGER = is_bool(os.environ.get(
->>>>>>> 65c7b75... userbot: init: Fix boolean detection from config
         "LOGGER", None
     ))  # Incase you want to turn off logging, put this to false
 
@@ -64,11 +58,7 @@ except NameError:
 
     CONSOLE_LOGGER_VERBOSE = is_bool(os.environ.get("CONSOLE_LOGGER_VERBOSE", None))
 
-<<<<<<< HEAD
-    DB_URI = os.environ.get("DB_URI", None)
-=======
     DB_URI = os.environ.get("DATABASE_URL", None)
->>>>>>> 65c7b75... userbot: init: Fix boolean detection from config
 
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 

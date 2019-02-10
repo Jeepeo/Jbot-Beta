@@ -9,12 +9,6 @@ from alchemysession import AlchemySessionContainer
 from sqlalchemy import create_engine
 from telethon import TelegramClient, events
 
-def is_bool(a):
-    if a == "True":
-        return True
-    elif a == "False":
-        return False
-
 dotenv.load_dotenv("config.env")
 UPDATER = os.environ.get("UPDATER", None)
 BUILD_CHOICE = os.environ.get("BUILD_CHOICE", "stable")
@@ -48,27 +42,17 @@ except NameError:
 
     API_HASH = os.environ.get("API_HASH", None)
 
-<<<<<<< HEAD
-    SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
-    LOGGER = os.environ.get(
-=======
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
-    LOGGER = is_bool(os.environ.get(
->>>>>>> 65c7b75... userbot: init: Fix boolean detection from config
+    LOGGER = os.environ.get(
         "LOGGER", None
-    ))  # Incase you want to turn off logging, put this to false
+    )  # Incase you want to turn off logging, put this to false
 
-    PM_AUTO_BAN = is_bool(os.environ.get("PM_AUTO_BAN", None))
+    PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", None)
 
-    CONSOLE_LOGGER_VERBOSE = is_bool(os.environ.get("CONSOLE_LOGGER_VERBOSE", None))
+    CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", None)
 
-<<<<<<< HEAD
-    DB_URI = os.environ.get("DB_URI", None)
-=======
-    DB_URI = os.environ.get("DATABASE_URL", None)
->>>>>>> 65c7b75... userbot: init: Fix boolean detection from config
+    DB_URI = os.environ.get("DATABASE_URI", None)
 
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 
@@ -94,7 +78,6 @@ SNIPE_TEXT = ""
 COUNT_MSG = 0
 BRAIN_CHECKER = []
 USERS = {}
-GROUPS = {}
 SPAM = False
 WIDE_MAP = dict((i, i + 0xFEE0) for i in range(0x21, 0x7F))
 WIDE_MAP[0x20] = 0x3000

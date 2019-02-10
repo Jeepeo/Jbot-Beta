@@ -66,7 +66,6 @@ async def purgeme(delme):
                 LOGGER_GROUP, "Purge of " + str(count) + " messages done successfully."
             )
         time.sleep(2)
-        i = 1
         await smsg.delete()
 
 
