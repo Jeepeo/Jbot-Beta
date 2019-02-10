@@ -107,9 +107,10 @@ async def thanos(bon):
             embed_links=True,
         )
 
-        if (await bon.get_reply_message()).sender_id in BRAIN_CHECKER:
+        if bon.reply_to_msg_id in BRAIN_CHECKER:
             await bon.edit("`Ban Error! I am not supposed to ban this user`")
             return
+
         await bon.edit("`Whacking the pest!`")
         time.sleep(5)
         try:
