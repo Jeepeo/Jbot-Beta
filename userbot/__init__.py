@@ -52,7 +52,11 @@ except NameError:
 
     CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", None)
 
+<<<<<<< HEAD
     DB_URI = os.environ.get("DB_URI", None)
+=======
+    DB_URI = os.environ.get("DATABASE_URL", None)
+>>>>>>> d2e11cb... userbot: db: update database environment path to satisfy Heroku peeps
 
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 
