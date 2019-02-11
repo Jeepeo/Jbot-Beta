@@ -87,6 +87,11 @@ async def approvepm(apprvpm):
         except:
             await apprvpm.edit("`Running on Non-SQL mode!`")
             return
+<<<<<<< HEAD
+        approve(apprvpm.chat_id)
+        await apprvpm.edit("`Great!😝 , You can now PM Jeepo😎.`")
+        if LOGGER:
+=======
 
         if apprvpm.reply_to_msg_id:
             reply = await apprvpm.get_reply_message()
@@ -96,6 +101,7 @@ async def approvepm(apprvpm):
             approve(replied_user.user.id)
         else:
             approve(apprvpm.chat_id)
+>>>>>>> b5f41b1... modules: pmpermit: Rework mechanics and introduce Reply-to-do-stuff
             aname = await bot.get_entity(apprvpm.chat_id)
             name0 = str(aname.first_name)
 
@@ -106,17 +112,30 @@ async def approvepm(apprvpm):
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
+<<<<<<< HEAD
+                "["
+                + name0
+                + "](tg://user?id="
+                + str(apprvpm.chat_id)
+                + ")"
+                + " Great!😝 , You can now PM Jeepeo😎",
+=======
                 f"[{name0}](tg://user?id={apprvpm.chat_id})"
                 " was approved to PM you.",
+>>>>>>> b5f41b1... modules: pmpermit: Rework mechanics and introduce Reply-to-do-stuff
             )
 
 
 @bot.on(events.NewMessage(outgoing=True,pattern="^.block$"))
 @bot.on(events.MessageEdited(outgoing=True,pattern="^.block$"))
 async def blockpm(block):
+<<<<<<< HEAD
+    await block.respond("`You Bitch 😡 , You Now blocked to PM Jeepeo😎`")
+    time.sleep(3)
+    await bot(BlockRequest(block.chat_id))
+=======
     if not block.text[0].isalpha() and block.text[0] not in ("/", "#", "@", "!"):
-
-        await block.edit("`You are gonna be blocked from PM-ing my Master!`")
+        await block.respond("`You are gonna be blocked from PM-ing my Master!`")
 
         if block.reply_to_msg_id:
             reply = await block.get_reply_message()
@@ -142,7 +161,7 @@ async def unblockpm(unblock):
     if not unblock.text[0].isalpha() and unblock.text[0] \
             not in ("/", "#", "@", "!") and unblock.reply_to_msg_id:
 
-        await unblock.edit("`My Master has forgiven you to PM now`")
+        await unblock.respond("`My Master has forgiven you to PM now`")
 
         if unblock.reply_to_msg_id:
             reply = await unblock.get_reply_message()
@@ -156,3 +175,4 @@ async def unblockpm(unblock):
                 f"[{name0}](tg://user?id={unblock.chat_id})"
                 " was unblocc'd!.",
             )
+>>>>>>> b5f41b1... modules: pmpermit: Rework mechanics and introduce Reply-to-do-stuff
