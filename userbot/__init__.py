@@ -58,6 +58,8 @@ except NameError:
     DB_URI = os.environ.get("DATABASE_URL", None)
 >>>>>>> d2e11cb... userbot: db: update database environment path to satisfy Heroku peeps
 
+    DB_URI = os.environ.get("DATABASE_URI", None)
+
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 
     OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
