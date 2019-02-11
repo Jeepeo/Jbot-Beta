@@ -286,6 +286,19 @@ async def support_channel(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.botver$"))
 async def bot_ver(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+<<<<<<< HEAD
+        ver = (
+                "`UserBot Version: modular 2.2-a (Jeepeo-Edition😎) "
+            + subprocess.run(
+                [
+                    "git",
+                    "describe",
+                    "--all",
+                    "--long"
+                ],
+                stdout=subprocess.PIPE,).stdout.decode() + "`"
+        )
+=======
         if which("git") is not None:
             ver = (
                 "`UserBot Version: "
@@ -298,6 +311,7 @@ async def bot_ver(e):
                     ],
                     stdout=subprocess.PIPE,).stdout.decode() + "`"
             )
+>>>>>>> 31389f3... modules: misc: botver: use static numbering if git doesn't exist
 
             copoint = (
                 "`At: "
