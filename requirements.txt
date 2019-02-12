@@ -20,9 +20,5 @@ gTTS-token>=1.1.3
 psycopg2
 python-dotenv
 aiohttp
-<<<<<<< HEAD
-git+https://github.com/tulir/telethon-session-sqlalchemy
-=======
 telethon-session-sqlalchemy>=0.2.6
 cryptg
->>>>>>> 4302909... core: requirements: add cryptg as dependency
