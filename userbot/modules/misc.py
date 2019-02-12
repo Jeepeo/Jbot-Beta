@@ -2,14 +2,10 @@ import io
 import random
 import re
 import time
-<<<<<<< HEAD
-from datetime import datetime
-=======
 from asyncio import create_subprocess_shell as asyncsh
 from asyncio.subprocess import PIPE as asyncsh_PIPE
 from subprocess import PIPE
 from subprocess import run as runapp
->>>>>>> 5537366... [REFACTOR]: modules: misc, system-stats: move to async and refactor
 
 import hastebin
 import pybase64
@@ -269,40 +265,6 @@ async def support_channel(e):
         await e.edit("t.me/maestro_userbot_channel")
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.botver$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.botver$"))
-async def bot_ver(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        ver = (
-                "`UserBot Version: modular 2.2-a (Jeepeo-Edition😎) "
-            + subprocess.run(
-                [
-                    "git",
-                    "describe",
-                    "--all",
-                    "--long"
-                ],
-                stdout=subprocess.PIPE,).stdout.decode() + "`"
-        )
-
-        copoint = (
-            "`At: "
-            + subprocess.run(
-                [
-                    "git",
-                    "rev-list",
-                    "--all",
-                    "--count"
-                ], stdout=subprocess.PIPE,
-            ).stdout.decode() + "`"
-        )
-
-        await e.edit(ver + copoint)
-
-
-=======
->>>>>>> 5537366... [REFACTOR]: modules: misc, system-stats: move to async and refactor
 @bot.on(events.NewMessage(outgoing=True, pattern="^.userid$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.userid$"))
 async def chatidgetter(e):
