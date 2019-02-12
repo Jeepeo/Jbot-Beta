@@ -44,7 +44,7 @@ except NameError:
 
     DB_URI = os.environ.get("DATABASE_URL", None)
 
-    DB_URI = os.environ.get("DATABASE_URI", None)
+    DB_URI = os.environ.get("DB_URI", None)
 
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 
