@@ -34,12 +34,8 @@ async def promote(promt):
             rights = new_rights
         elif not admin and not creator:
             rights = None
-<<<<<<< HEAD
         await promt.edit("`Bitch! You are being promoted.....`")
         time.sleep(3)
-=======
-        await promt.edit("`Promoting...`")
->>>>>>> 21e9b94... [REFACTOR]: module: admin: Cleanups
 
         # Try to promote if current user is admin or creator
         try:
@@ -124,14 +120,10 @@ async def thanos(bon):
             embed_links=True,
         )
 
-<<<<<<< HEAD
-        reply_id = await bon.get_reply_message().sender_id
-=======
         # For dealing with reply-at-ban
         sender = await bon.get_reply_message()
 
         # If the user is a sudo
->>>>>>> 21e9b94... [REFACTOR]: module: admin: Cleanups
         try:
             if reply_id in BRAIN_CHECKER:
                 await bon.edit("`Ban Error! I am not supposed to ban this user`")
@@ -147,13 +139,6 @@ async def thanos(bon):
         try:
             await bot(
                 EditBannedRequest(
-<<<<<<< HEAD
-                    bon.chat_id, reply_id, rights
-                )
-            )
-        except AttributeError:
-            await bon.edit("`Y u no give target`")
-=======
                     bon.chat_id,
                     sender.sender_id,
                     banned_rights
@@ -161,7 +146,6 @@ async def thanos(bon):
             )
 
         # ExceptionHandling if the user is a Sudo
->>>>>>> 21e9b94... [REFACTOR]: module: admin: Cleanups
         except BadRequestError:
             if bon.sender_id in BRAIN_CHECKER:
                 await bon.respond(
