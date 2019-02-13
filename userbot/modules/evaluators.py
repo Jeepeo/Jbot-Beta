@@ -94,9 +94,9 @@ async def run(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern=r"^\.term (.+)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern=r"^\.term (.+)"))
-async def terminal(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        if e.is_channel and not e.is_group:
+async def terminal_runner(term):
+    if not term.text[0].isalpha() and term.text[0] not in ("/", "#", "@", "!"):
+        if term.is_channel and not term.is_group:
             await e.edit("`Term Commands aren't permitted on channels`")
             return
         message = term.text
