@@ -12,16 +12,6 @@ from telethon import TelegramClient, events
 
 
 dotenv.load_dotenv("config.env")
-<<<<<<< HEAD
-=======
-subprocess.run(["rm", "-rf", "brains.check"], stdout=subprocess.PIPE)
-
-URL = 'https://storage.googleapis.com/project-aiml-bot/brains.check'
-GET = requests.get(URL)
-
-with open('brains.check', 'wb') as brains:
-    brains.write(GET.content)
->>>>>>> a913733... init: use request binary for the brains getter
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
