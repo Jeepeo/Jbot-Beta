@@ -1,6 +1,7 @@
 import asyncio
 import inspect
 import subprocess
+from getpass import getuser
 
 import hastebin
 from telethon import TelegramClient, events
@@ -98,6 +99,7 @@ async def terminal(e):
         if e.is_channel and not e.is_group:
             await e.edit("`Term Commands aren't permitted on channels`")
             return
+<<<<<<< HEAD
     cmd = e.pattern_match.group(1)
 
     await e.edit("`Connecting..`")
@@ -110,14 +112,34 @@ async def terminal(e):
     OUTPUT = f"**QUERY:**\n__Command:__\n`{cmd}` \n__PID:__\n`{process.pid}`\n\n**Output:**\n"
 
     if not SUBPROCESS_ANIM:
+=======
+        message = term.text
+        curruser = getuser()
+        command = str(message)
+        command = str(command[6:])
+        process = await asyncio.create_subprocess_shell(
+            command,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE
+            )
+>>>>>>> cd66c25... userbot: modules: evaluator: use current user name for term command
         stdout, stderr = await process.communicate()
 
+<<<<<<< HEAD
         if len(stdout) > 4096:
             await e.reply(f"{OUTPUT}\n__Process killed:__ `Messasge too long`")
             return
 
         await e.edit(f"{OUTPUT}`{stdout.decode()}`")
         return
+=======
+        await term.edit(
+            f"`{curruser}:~# "
+            + command
+            + "`\n`"
+            + result + "`"
+        )
+>>>>>>> cd66c25... userbot: modules: evaluator: use current user name for term command
 
 
     while process:
