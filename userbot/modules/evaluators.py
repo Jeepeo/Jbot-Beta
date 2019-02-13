@@ -92,12 +92,12 @@ async def run(e):
             )
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^\.term (.+)"))
-@bot.on(events.MessageEdited(outgoing=True, pattern=r"^\.term (.+)"))
+@bot.on(events.NewMessage(outgoing=True, pattern="^.term"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.term"))
 async def terminal_runner(term):
     if not term.text[0].isalpha() and term.text[0] not in ("/", "#", "@", "!"):
         if term.is_channel and not term.is_group:
-            await e.edit("`Term Commands aren't permitted on channels`")
+            await term.edit("`Term Commands aren't permitted on channels`")
             return
         message = term.text
         curruser = getuser()
@@ -109,6 +109,20 @@ async def terminal_runner(term):
             stderr=asyncio.subprocess.PIPE
             )
         stdout, stderr = await process.communicate()
+        result = str(stdout.decode().strip()) \
+            + str(stderr.decode().strip())
+
+        if len(result) > 4096:
+            output = open("output.txt", "w+")
+            output.write(result)
+            output.close()
+            await bot.send_file(
+                term.chat_id,
+                "sender.txt",
+                reply_to=term.id,
+                caption="`Output too large, sending as file`",
+            )
+            subprocess.run(["rm", "output.txt"], stdout=subprocess.PIPE)
 
         await term.edit(
             f"`{curruser}:~# "
@@ -117,28 +131,8 @@ async def terminal_runner(term):
             + result + "`"
         )
 
-
-    while process:
-        if time.time() > start_time:
-            await e.edit(f"{OUTPUT}\n__Process killed__: `Time limit reached`")
-            break
-
-        stdout = await process.stdout.readline()
-
-        if not stdout:
-            _, stderr = await process.communicate()
-            if stderr.decode():
-                OUTPUT += f"`{stderr.decode()}`"
-                await e.edit(OUTPUT)
-                break
-
-        if stdout:
-            OUTPUT += f"`{stdout.decode()}`"
-
-        if len(OUTPUT) > 4096:
-            await e.reply(f"{OUTPUT}\n__Process killed:__ `Messasge too long`")
-            break
-        try:
-            await e.edit(OUTPUT)
-        except Exception:
-            break
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                "Terminal Command " + command + " was executed sucessfully",
+            )
