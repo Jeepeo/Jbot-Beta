@@ -27,3 +27,10 @@ async def amialive(e):
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit(".term speedtest-cli --simple")
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.bover$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.bover$"))
+async def amialive(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("UserBot version : 2.2-a\nBranch : Staging\n At commit : 680\nLast update 13/02/2019 5:30IST\n Jeepeo😎 Edition 2.0")
