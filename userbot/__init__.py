@@ -6,10 +6,15 @@ import logging
 import time
 import dotenv
 import requests
+<<<<<<< HEAD
 from alchemysession import AlchemySessionContainer
 from sqlalchemy import create_engine
 from telethon import TelegramClient, events
 
+=======
+from telethon import TelegramClient
+from distutils.util import strtobool as sb
+>>>>>>> 55e5dd2... userbot:init: Ebforce boolean types for Logger and few other config vars
 
 dotenv.load_dotenv("config.env")
 
@@ -32,20 +37,29 @@ except NameError:
 
     API_HASH = os.environ.get("API_HASH", None)
 
+<<<<<<< HEAD
     SUBPROCESS_ANIM = os.environ.get("SUBPROCESS_ANIM", None)
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
     LOGGER = os.environ.get(
+=======
+    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
+
+    LOGGER = sb(os.environ.get(
+>>>>>>> 55e5dd2... userbot:init: Ebforce boolean types for Logger and few other config vars
         "LOGGER", None
-    )  # Incase you want to turn off logging, put this to false
+    ))  # Incase you want to turn off logging, put this to false
 
-    PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", None)
+    PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", None))
 
-    CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", None)
+    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", None))
 
     DB_URI = os.environ.get("DATABASE_URL", None)
 
+<<<<<<< HEAD
     DB_URI = os.environ.get("DB_URI", None)
 
+=======
+>>>>>>> 55e5dd2... userbot:init: Ebforce boolean types for Logger and few other config vars
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
 
     OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
