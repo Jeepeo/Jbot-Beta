@@ -114,10 +114,12 @@ async def lang(e):
 
 #ASCII figlet fonts--->
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.figlet"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.figlet"))
-async def fnt(e):
-    await e.delete()
-    figlet = Figlet(font=e.pattern_match.group(2),width=30)
-    out = figlet.renderText(e.pattern_match.group(1))
-    await bot.send_message(await bot.get_input_entity(e.chat_id),".```"+out+".```")            			
+@bot.on(events.NewMessage(pattern='^\.figlet (.+)'))
+@bot.on(events.MessageEdited(pattern='^\.figlet (.+)'))
+async def figlety(e):
+	l=['figlet']
+	l+=e.pattern_match.group(1).split(' ')
+	p='```'
+	p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
+	p+='```'
+	await e.edit(p)            			
