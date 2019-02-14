@@ -114,6 +114,7 @@ async def lang(e):
 
 #ASCII figlet fonts--->
 @bot.on(events.NewMessage(outgoing=True,pattern=r'.fnt (.*) (.*)'))
+@bot.on(events.MessageEdited(outgoing=True,pattern=r'.fnt(.*) (.*)'))
 async def fnt(e):
     await e.delete()
     figlet = Figlet(font=e.pattern_match.group(2),width=30)
