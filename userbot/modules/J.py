@@ -12,6 +12,7 @@ from google_images_download import google_images_download
 from googletrans import Translator
 from gtts import gTTS
 from telethon import TelegramClient, events
+from pyfiglet import Figlet
 
 from userbot import LOGGER, LOGGER_GROUP, bot
 
@@ -108,4 +109,13 @@ async def lang(e):
             await bot.send_message(
                 LOGGER_GROUP, "tts language changed to **" + langi + "**"
             )
-            await e.edit("tts language changed to **" + langi + "**")    			
+            await e.edit("tts language changed to **" + langi + "**")    
+
+
+#ASCII figlet fonts--->
+@bot.on(events.NewMessage(outgoing=True,pattern=r'.fnt (.*) (.*)'))
+async def fnt(e):
+    await e.delete()
+    figlet = Figlet(font=e.pattern_match.group(2),width=30)
+    out = figlet.renderText(e.pattern_match.group(1))
+    await bot.send_message(await bot.get_input_entity(e.chat_id),".```"+out+".```")            			
