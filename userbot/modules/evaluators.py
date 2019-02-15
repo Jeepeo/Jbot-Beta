@@ -6,7 +6,6 @@ from getpass import getuser
 import hastebin
 from telethon import TelegramClient, events
 from userbot import bot
-from userbot import SUBPROCESS_ANIM
 from telethon.events import StopPropagation
 
 from userbot import *
