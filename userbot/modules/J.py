@@ -156,5 +156,4 @@ async def faces(owo):
         reply_text = re.sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
         reply_text = re.sub(r"\!+", " " + random.choice(uwus), reply_text)
         reply_text = reply_text.replace("ove", "uv")
-        reply_text += " " + random.choice(uwus)
         await owo.edit(reply_text)        
