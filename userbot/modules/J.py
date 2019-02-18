@@ -137,7 +137,7 @@ async def lol(e):
 @bot.on(events.NewMessage(outgoing=True, pattern="^.smk (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
 async def faces(owo):
-    if not e.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         textx = await e.get_reply_message()
         message = e.text
         if message[5:]:
