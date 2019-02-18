@@ -45,6 +45,7 @@ async def promote(promt):
                                  (await promt.get_reply_message()).sender_id,
                                  rights)
             )
+            await promt.edit("`Promoted Successfully!`")
 
         # If Telethon spit BadRequestError, assume
         # we don't have Promote permission
@@ -53,7 +54,10 @@ async def promote(promt):
                 "`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `"
                 )
             return
+<<<<<<< HEAD
         await promt.edit("`You Promoted Successfully!`")
+=======
+>>>>>>> d1dba0c... modules: admin: refactor and fix promote logic
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
@@ -99,7 +103,9 @@ async def demote(dmod):
         # If we catch BadRequestError from Telethon
         # Assume we don't have permission to demote
         except BadRequestError:
-            await dmod.edit("`You Don't have sufficient permissions to demhott`")
+            await dmod.edit(
+                "`You Don't have sufficient permissions to demhott`"
+                )
             return
         await dmod.edit("`Demoted Successfully!`")
 
@@ -136,8 +142,15 @@ async def thanos(bon):
 
         # If the user is a sudo
         try:
+<<<<<<< HEAD
             if reply_id in BRAIN_CHECKER:
                 await bon.edit("`Ban Error! I am not supposed to ban this user`")
+=======
+            if sender.sender_id in BRAIN_CHECKER:
+                await bon.edit(
+                    "`Ban Error! I am not supposed to ban this user`"
+                    )
+>>>>>>> d1dba0c... modules: admin: refactor and fix promote logic
                 return
 
         # This exception handled if the user doesn't
@@ -163,13 +176,16 @@ async def thanos(bon):
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
-                str((await bon.get_reply_message()).sender_id) + " was banned.",
+                str((await bon.get_reply_message()).sender_id)
+                + " was banned.",
             )
+
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unban$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unban$"))
 async def nothanos(unbon):
-    if not unbon.text[0].isalpha() and unbon.text[0] not in ("/", "#", "@", "!"):
+    if not unbon.text[0].isalpha() and unbon.text[0] \
+            not in ("/", "#", "@", "!"):
         rights = ChatBannedRights(
             until_date=None,
             send_messages=None,
@@ -192,7 +208,8 @@ async def nothanos(unbon):
             if LOGGER:
                 await bot.send_message(
                     LOGGER_GROUP,
-                    str((await unbon.get_reply_message()).sender_id) + " was unbanned.",
+                    str((await unbon.get_reply_message()).sender_id)
+                    + " was unbanned.",
                 )
         except UserIdInvalidError:
             await unbon.edit("`Uh oh my unban logic broke!`")
@@ -208,7 +225,9 @@ async def spider(spdr):
 
         # If the targeted user is a Sudo
         if (await spdr.get_reply_message()).sender_id in BRAIN_CHECKER:
-            await spdr.edit("`Mute Error! I am not supposed to mute this user`")
+            await spdr.edit(
+                "`Mute Error! I am not supposed to mute this user`"
+                )
             return
 
         # Check if the function running under SQL mode
@@ -246,10 +265,12 @@ async def spider(spdr):
                 " was muted.",
             )
 
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmute$"))
 async def unmoot(unmot):
-    if not unmot.text[0].isalpha() and unmot.text[0] not in ("/", "#", "@", "!"):
+    if not unmot.text[0].isalpha() and unmot.text[0] \
+            not in ("/", "#", "@", "!"):
         rights = ChatBannedRights(
             until_date=None,
             send_messages=None,
