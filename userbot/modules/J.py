@@ -134,7 +134,6 @@ async def lol(e):
         await e.edit(t)
 
 
-Rohit Sinha:
 @bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
 async def tr(e):
