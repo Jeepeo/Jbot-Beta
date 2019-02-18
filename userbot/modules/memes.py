@@ -22,12 +22,11 @@ async def kek(keks):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^-_-$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^-_-$"))
-async def lol(lel):
-    ok = "-_-"
-    if range(10):
-        ok = t[:-1] + "_-"
-        await lel.edit(t)
-
+async def lol(e):
+    t = "-_-"
+    for j in range(10):
+        t = t[:-1] + "_-"
+        await e.edit(t)
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.cp"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.cp"))
