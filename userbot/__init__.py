@@ -1,19 +1,7 @@
-<<<<<<< HEAD
-import sqlite3
-import subprocess
-import sys
-import os
-import logging
-import time
-import dotenv
-import requests
-from telethon import TelegramClient
-=======
 import os
 
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
->>>>>>> 9a56299... userbot: init: less imports for life
 from distutils.util import strtobool as sb
 
 from dotenv import load_dotenv
