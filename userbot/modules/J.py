@@ -148,5 +148,5 @@ async def tr(e):
         faces = [
             "ツ"
         ]
-        reply_text = message + " " + random.choice(faces)
+        reply_text = message + " " + ツ
         await e.edit(reply_text)
