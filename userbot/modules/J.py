@@ -145,5 +145,5 @@ async def faces(owo):
         elif textx:
             message = textx
             message = str(message.message)
-            reply_text += " " + ツ
-            await 
+            reply_text += " " + ツ, reply_text)
+            await e.edit(reply_text)
