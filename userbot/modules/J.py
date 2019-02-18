@@ -132,3 +132,29 @@ async def lol(e):
     for j in range(10):
         t = t[:-1] + "of"
         await e.edit(t)
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.smrk (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.smrk (.*)"))
+async def faces(owo):
+    if not owo.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
+        textx = await owo.get_reply_message()
+        message = owo.text
+        if message[5:]:
+            message = owo.pattern_match.group(1)
+        elif textx:
+            message = textx
+            message = str(message.message)
+        uwus = [
+            "ツ",
+            "ツ",
+            "ツ",
+        ]
+        reply_text = re.sub(r"(r|l)", "w", message)
+        reply_text = re.sub(r"(R|L)", "W", reply_text)
+        reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
+        reply_text = re.sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
+        reply_text = re.sub(r"\!+", " " + random.choice(uwus), reply_text)
+        reply_text = reply_text.replace("ove", "uv")
+        reply_text += " " + random.choice(uwus)
+        await owo.edit(reply_text)        
