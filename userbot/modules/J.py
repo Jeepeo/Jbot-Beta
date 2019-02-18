@@ -134,8 +134,8 @@ async def lol(e):
         await e.edit(t)
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.smrk (.*)"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.smrk (.*)"))
+@bot.on(events.NewMessage(outgoing=True, pattern="^.smk  (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
 async def faces(owo):
     if not owo.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
         textx = await owo.get_reply_message()
@@ -145,14 +145,5 @@ async def faces(owo):
         elif textx:
             message = textx
             message = str(message.message)
-        uwus = [
-            "ツ",
-            "ツ",
-            "ツ",
-        ]
-        reply_text = re.sub(r"(r|l)", "w", message)
-        reply_text = re.sub(r"(R|L)", "W", reply_text)
-        reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
-        reply_text = re.sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
-        reply_text = reply_text.replace("ove", "uv")
-        await owo.edit(reply_text)        
+            reply_text += " " + ツ
+            await owo.edit(reply_text)
