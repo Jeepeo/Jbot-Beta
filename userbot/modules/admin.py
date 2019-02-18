@@ -54,10 +54,6 @@ async def promote(promt):
                 "`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `"
                 )
             return
-<<<<<<< HEAD
-        await promt.edit("`You Promoted Successfully!`")
-=======
->>>>>>> d1dba0c... modules: admin: refactor and fix promote logic
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
@@ -142,15 +138,10 @@ async def thanos(bon):
 
         # If the user is a sudo
         try:
-<<<<<<< HEAD
-            if reply_id in BRAIN_CHECKER:
-                await bon.edit("`Ban Error! I am not supposed to ban this user`")
-=======
             if sender.sender_id in BRAIN_CHECKER:
                 await bon.edit(
                     "`Ban Error! I am not supposed to ban this user`"
                     )
->>>>>>> d1dba0c... modules: admin: refactor and fix promote logic
                 return
 
         # This exception handled if the user doesn't
