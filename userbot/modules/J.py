@@ -123,3 +123,12 @@ async def figlety(e):
 	p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
 	p+='```'
 	await e.edit(p)            			
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^Oof$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^Ooof$"))
+async def lol(e):
+    t = "Oof"
+    for j in range(10):
+        t = t[:-1] + "of"
+        await e.edit(t)
