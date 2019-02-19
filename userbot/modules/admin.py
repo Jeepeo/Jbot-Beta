@@ -73,11 +73,11 @@ async def demote(dmod):
             return
         # If not admin and not creator, also return
         if not admin and not creator:
-            await dmod.edit("`You aren't an admin!`")
+            await dmod.edit("`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `")
             return
 
         # If passing, declare that we're going to demote
-        await dmod.edit("`Demoting...`")
+        await dmod.edit("`The Bitch is being Demoted...`")
 
         # New rights after demotion
         newrights = ChatAdminRights(
@@ -100,10 +100,10 @@ async def demote(dmod):
         # Assume we don't have permission to demote
         except BadRequestError:
             await dmod.edit(
-                "`You Don't have sufficient permissions to demhott`"
+                "`Ooof ! You dont Have permission to demote!`"
                 )
             return
-        await dmod.edit("`Demoted Successfully!`")
+        await dmod.edit("`Demoted The bitch Successfully!`")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ban$"))
@@ -133,7 +133,7 @@ async def thanos(bon):
 
         # Well
         if not admin and not creator:
-            await bon.edit("`You aren't an admin!`")
+            await bon.edit("`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `")
             return
 
         # If the user is a sudo
@@ -150,7 +150,7 @@ async def thanos(bon):
             return
 
         # Announce that we're going to whacking the pest
-        await bon.edit("`Whacking the pest!`")
+        await bon.edit("`whacking the BITCH!`")
         await bot(
             EditBannedRequest(
                 bon.chat_id,
@@ -161,7 +161,7 @@ async def thanos(bon):
 
         # Delete message and then tell that the command
         # is done gracefully
-        await bon.edit("`Banned!`")
+        await bon.edit("`The bitch is Banned!`")
 
         # Announce to the logging group if we done a banning
         if LOGGER:
@@ -194,7 +194,7 @@ async def nothanos(unbon):
                 replymsg.sender_id,
                 rights
                 ))
-            await unbon.edit("```Unbanned Successfully```")
+            await unbon.edit("```Unbanned the bitch Successfully```")
 
             if LOGGER:
                 await bot.send_message(
@@ -203,7 +203,7 @@ async def nothanos(unbon):
                     + " was unbanned.",
                 )
         except UserIdInvalidError:
-            await unbon.edit("`Uh oh my unban logic broke!`")
+            await unbon.edit("`Cant use Magic Wand Jeepeo😎`")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.mute$"))
@@ -237,16 +237,16 @@ async def spider(spdr):
 
         # If not admin and not creator, return
         if not admin and not creator:
-            await spdr.edit("`You aren't an admin!`")
+            await spdr.edit("`Ooof ! Jeepeo😎 ,You are not admin in this **CANCEROUS** group `")
             return
 
         target = await spdr.get_reply_message()
         # Else, do announce and do the mute
         mute(spdr.chat_id, target.sender_id)
-        await spdr.edit("`Gets a tape!`")
+        await spdr.edit("`Here is your glue`")
 
         # Announce that the function is done
-        await spdr.edit("`Safely taped!`")
+        await spdr.edit("`You have been sucessfully used the glue`")
 
         # Announce to logging group
         if LOGGER:

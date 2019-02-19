@@ -134,19 +134,4 @@ async def lol(e):
         await e.edit(t)
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
-async def tr(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message=e.text
-        if message[5:]:
-            message = str(message[5:])
-        elif textx:
-            message = textx
-            message = str(message.message)
-        faces = [
-            "ツ"
-        ]
-        reply_text = message + " " + ツ
-        await e.edit(reply_text)
+#Blank space for making smirk command:

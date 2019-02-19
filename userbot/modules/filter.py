@@ -47,7 +47,7 @@ async def add_filter(e):
         for i in range(2, len(kek)):
             string = string + " " + str(kek[i])
         add_filter(str(e.chat_id), kek[1], string)
-        await e.edit("```Filter added successfully```")
+        await e.edit("```Jeepeo added Filter successfully```")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.stop\\s.*"))
