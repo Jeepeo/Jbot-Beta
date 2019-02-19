@@ -6,31 +6,30 @@ from telethon import events
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.bot$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯ \n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `")
+        await e.edit("` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`" 
+                     "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `")
                      
              
 @bot.on(events.NewMessage(outgoing=True, pattern="^.lol$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.lol$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `")
+        await e.edit("`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
+                     "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
+                     "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `")
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.hey$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.hey$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
+        await e.edit("\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀`"
+                     "`\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈`"
+                     "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
         
-
-@bot.on(events.NewMessage(outgoing=True, pattern="^.speedtest$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.speedtest$"))
-async def amialive(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(".term speedtest-cli --simple")
-
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.bover$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.bover$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`UserBot version : 2.2-a\nBranch : Staging\nAt commit : 689\nLast update ------\n  Jeepeo😎 Edition 2.0`")
+        await e.edit("`UserBot version : 2.2-a\nBranch : Staging\nAt commit : 689`"
+                      "`\nLast update ------\n  Jeepeo😎 Edition 2.0`")

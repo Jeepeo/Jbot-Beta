@@ -8,7 +8,7 @@ from telethon.tl.functions.channels import LeaveChannelRequest, CreateChannelReq
 @bot.on(events.NewMessage(outgoing=True, pattern='^\.timer '))
 @bot.on(events.MessageEdited(outgoing=True, pattern='^\.timer '))
 async def timer_blankx(e):
-	txt=e.text[7:] + '\nJeepeo , Im Deleting in '
+	txt=e.text[7:] + '\nJeepeo , I am Deleting the message in T-minus '
 	j=15
 	k=j
 	for j in range(j):
