@@ -144,8 +144,28 @@ async def tr(e):
             message = str(message[5:])
         elif textx:
             message = textx
-            message = str(message.message)
-        ツ=ツ    
-        faces = ツ
+            message = str(message.message)   
+        faces += ツ
         reply_text = message + " " + faces
         await e.edit(reply_text)
+
+ #duplicate of test smirk 5698
+@bot.on(events.NewMessage(outgoing=True, pattern="^.tr$"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr$"))
+async def smrk(e):       
+        if not run.text[0].isalpha() and run.text[0] not in ("/", "#", "@", "!"):
+            textx = await e.get_reply_message()
+        message=e.text
+        if message[5:]:
+            message = str(message[5:])
+        elif textx:
+            message = textx
+            message = str(message.message) 
+        reactor = [
+                "ツ",
+                "ツ",
+                "ツ",
+        ]
+        reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
+        reply_text += " " + random.choice(reactor)
+        await owo.edit(reply_text)
