@@ -145,6 +145,7 @@ async def tr(e):
         elif textx:
             message = textx
             message = str(message.message)
+        ツ=ツ    
         faces = ツ
         reply_text = message + " " + faces
         await e.edit(reply_text)

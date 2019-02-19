@@ -67,15 +67,15 @@ async def who(event):
     if first_name:
         first_name = first_name.replace("\u2060", "")
     else:
-        first_name = "This User has no First Name"
+        first_name = "This Bitch has no First Name"
     if last_name:
         last_name = last_name.replace("\u2060", "")
     else:
-        last_name = "This User has no Last Name"
+        last_name = "This Bitch has no Last Name"
     if username:
         username = "@{}".format(username)
     else:
-        username = "This User has no Username"
+        username = "This Bitch has no Username"
     if user_bio:
         user_bio = user_bio
     else:
