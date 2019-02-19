@@ -150,8 +150,8 @@ async def tr(e):
         await e.edit(reply_text)
 
  #duplicate of test smirk 5698
-@bot.on(events.NewMessage(outgoing=True, pattern="^.tr$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr$"))
+@bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
 async def smrk(e):       
         if not run.text[0].isalpha() and run.text[0] not in ("/", "#", "@", "!"):
             textx = await e.get_reply_message()
