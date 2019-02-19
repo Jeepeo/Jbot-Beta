@@ -168,4 +168,4 @@ async def smrk(e):
         ]
         reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
         reply_text += " " + random.choice(reactor)
-        await owo.edit(reply_text)
+        await e.edit(reply_text)
