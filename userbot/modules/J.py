@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 import time
+import random
 from datetime import datetime, timedelta
 
 import urbandict
