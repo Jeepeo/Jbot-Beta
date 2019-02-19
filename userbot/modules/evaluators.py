@@ -124,7 +124,7 @@ async def terminal_runner(term):
             subprocess.run(["rm", "output.txt"], stdout=subprocess.PIPE)
 
         await term.edit(
-            f"`root@Jeepeo55:~# "
+            f"root@Jeepeo55:~# "
             + command
             + "`\n`"
             + result + "`"
