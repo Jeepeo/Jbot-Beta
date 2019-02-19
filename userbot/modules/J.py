@@ -167,5 +167,11 @@ async def smrk(e):
                 "ツ",
                 "ツ",
         ]
+        reply_text = re.sub(r"(r|l)", "w", message)
+        reply_text = re.sub(r"(R|L)", "W", reply_text)
+        reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
+        reply_text = re.sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
+        reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
+        reply_text = reply_text.replace("ove", "uv")
         reply_text += " " + random.choice(reactor)
         await e.edit(reply_text)
