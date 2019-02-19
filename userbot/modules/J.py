@@ -153,7 +153,7 @@ async def tr(e):
 @bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
 async def smrk(e):       
-        if not run.text[0].isalpha() and run.text[0] not in ("/", "#", "@", "!"):
+        if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
             textx = await e.get_reply_message()
         message=e.text
         if message[5:]:
