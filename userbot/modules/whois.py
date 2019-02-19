@@ -79,7 +79,7 @@ async def who(event):
     if user_bio:
         user_bio = user_bio
     else:
-        user_bio = "This User has no About"
+        user_bio = "This Bitch has no About"
 
     caption = "<b>USER INFO:</b> \n"
     caption += f"First Name: {first_name} \n"
