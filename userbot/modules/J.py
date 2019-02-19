@@ -167,6 +167,5 @@ async def smrk(e):
                 "ツ",
                 "ツ",
         ]
-        reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
         reply_text += " " + random.choice(reactor)
         await e.edit(reply_text)
