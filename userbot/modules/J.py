@@ -14,6 +14,7 @@ from googletrans import Translator
 from gtts import gTTS
 from telethon import TelegramClient, events
 from pyfiglet import Figlet
+from telethon.errors import IndexError
 
 from userbot import LOGGER, LOGGER_GROUP, bot
 
@@ -23,6 +24,7 @@ langi = "en"
 @bot.on(events.NewMessage(outgoing=True,pattern='.imdb (.*)'))
 @bot.on(events.MessageEdited(outgoing=True,pattern='.imdb (.*)'))
 async def imdb(e):
+	try:
     movie_name = e.pattern_match.group(1)
     remove_space = movie_name.split(' ')
     final_name = '+'.join(remove_space)
@@ -97,6 +99,9 @@ async def imdb(e):
     			'\n<b>Story Line : </b>'+story_line,
     			link_preview = True , parse_mode = 'HTML'
     			)
+                except IndexError as error:
+                    await e.edit("`Please check the movie name again \n Enter correct name`")
+                    return
 
 
 @bot.on(events.NewMessage(pattern=".lang", outgoing=True))
@@ -135,24 +140,10 @@ async def lol(e):
         await e.edit(t)
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.smk"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.smk"))
-async def tr(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message=e.text
-        if message[5:]:
-            message = str(message[5:])
-        elif textx:
-            message = textx
-            message = str(message.message)   
-        faces += ツ
-        reply_text = message + " " + faces
-        await e.edit(reply_text)
 
- #duplicate of test smirk 5698
-@bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
+ #An sucking module, so leave it
+@bot.on(events.NewMessage(outgoing=True, pattern="^.smk (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
 async def smrk(e):       
         if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
             textx = await e.get_reply_message()
@@ -167,6 +158,8 @@ async def smrk(e):
                 "ツ",
                 "ツ",
         ]
+        reply_text = re.sub(r"(r|l)", "w", message)
+        reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
         reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
         reply_text += " " + random.choice(reactor)
         await e.edit(reply_text)
