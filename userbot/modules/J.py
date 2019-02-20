@@ -135,24 +135,10 @@ async def lol(e):
         await e.edit(t)
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.smk"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.smk"))
-async def tr(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message=e.text
-        if message[5:]:
-            message = str(message[5:])
-        elif textx:
-            message = textx
-            message = str(message.message)   
-        faces += " ツ"
-        reply_text = message + " " + faces
-        await e.edit(reply_text)
 
- #duplicate of test smirk 5698
-@bot.on(events.NewMessage(outgoing=True, pattern="^.tr"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.tr"))
+ #An sucking module, so leave it
+@bot.on(events.NewMessage(outgoing=True, pattern="^.smk (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
 async def smrk(e):       
         if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
             textx = await e.get_reply_message()
