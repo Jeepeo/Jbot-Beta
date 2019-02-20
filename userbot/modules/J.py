@@ -14,6 +14,7 @@ from googletrans import Translator
 from gtts import gTTS
 from telethon import TelegramClient, events
 from pyfiglet import Figlet
+from telethon.errors import IndexError
 
 from userbot import LOGGER, LOGGER_GROUP, bot
 
