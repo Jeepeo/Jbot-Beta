@@ -24,7 +24,7 @@ langi = "en"
 @bot.on(events.NewMessage(outgoing=True,pattern='.imdb (.*)'))
 @bot.on(events.MessageEdited(outgoing=True,pattern='.imdb (.*)'))
 async def imdb(e):
-  try:
+	try:
     movie_name = e.pattern_match.group(1)
     remove_space = movie_name.split(' ')
     final_name = '+'.join(remove_space)
