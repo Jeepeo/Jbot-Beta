@@ -97,7 +97,7 @@ async def imdb(e):
     			'\n<b>Story Line : </b>'+story_line,
     			link_preview = True , parse_mode = 'HTML'
     			)
-                except IndexError
+                except IndexError:
                     await e.edit("`Please check the movie name again \n Enter correct name`")
                     return
 
