@@ -94,5 +94,5 @@ async def stable_upstream(stable):
             "--hard",
             "origin/master"
         ], stdout=subprocess.PIPE,)
-    await stable.edit("`Shutting down for the upstream, Restart the bot kthx`")
+    await stable.edit("`Restarting the bot ----Upstreaming`")
     bot.disconnect()
