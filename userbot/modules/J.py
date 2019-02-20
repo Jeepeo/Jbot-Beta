@@ -24,7 +24,6 @@ langi = "en"
 @bot.on(events.NewMessage(outgoing=True,pattern='.imdb (.*)'))
 @bot.on(events.MessageEdited(outgoing=True,pattern='.imdb (.*)'))
 async def imdb(e):
-	try:
     movie_name = e.pattern_match.group(1)
     remove_space = movie_name.split(' ')
     final_name = '+'.join(remove_space)
@@ -33,7 +32,7 @@ async def imdb(e):
     soup = bs4.BeautifulSoup(page.content,'lxml')
     odds = soup.findAll("tr","odd")
     mov_title = odds[0].findNext('td').findNext('td').text
-    mov_link = "http://www.imdb.com/"+odds[0].findNext('td').findNext('td').a['href'] 
+    mov_link = "http://www.imdb.com/"+odds[0].findNext('td').findNext('td').a['href']
     page1 = requests.get(mov_link)
     soup = bs4.BeautifulSoup(page1.content,'lxml')
     if soup.find('div','poster'):
@@ -65,7 +64,7 @@ async def imdb(e):
     	for x in credits[1].findAll('a'):
     		actors.append(x.text)
     	actors.pop()
-    	stars = actors[0]+','+actors[1]+','+actors[2]	 
+    	stars = actors[0]+','+actors[1]+','+actors[2]
     if soup.find('div', "inline canwrap"):
     	story_line = soup.find('div', "inline canwrap").findAll('p')[0].text
     else:
@@ -80,7 +79,7 @@ async def imdb(e):
     			if "country_of_origin" in i['href']:
     				mov_country.append(i.text)
     			elif "primary_language" in i['href']:
-    				mov_language.append(i.text) 
+    				mov_language.append(i.text)
     if soup.findAll('div',"ratingValue"):
     	for r in soup.findAll('div',"ratingValue"):
     		mov_rating = r.strong['title']
@@ -99,9 +98,6 @@ async def imdb(e):
     			'\n<b>Story Line : </b>'+story_line,
     			link_preview = True , parse_mode = 'HTML'
     			)
-                except IndexError as error:
-                    await e.edit("`Please check the movie name again \n Enter correct name`")
-                    return
 
 
 @bot.on(events.NewMessage(pattern=".lang", outgoing=True))
@@ -115,7 +111,7 @@ async def lang(e):
             await bot.send_message(
                 LOGGER_GROUP, "tts language changed to **" + langi + "**"
             )
-            await e.edit("tts language changed to **" + langi + "**")    
+            await e.edit("tts language changed to **" + langi + "**")
 
 
 #ASCII figlet fonts--->
@@ -128,7 +124,7 @@ async def figlety(e):
 	p='```'
 	p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
 	p+='```'
-	await e.edit(p)            			
+	await e.edit(p)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^Oof$"))
@@ -144,7 +140,7 @@ async def lol(e):
  #An sucking module, so leave it
 @bot.on(events.NewMessage(outgoing=True, pattern="^.smk (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
-async def smrk(e):       
+async def smrk(e):
         if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
             textx = await e.get_reply_message()
         message=e.text
@@ -152,7 +148,7 @@ async def smrk(e):
             message = str(message[5:])
         elif textx:
             message = textx
-            message = str(message.message) 
+            message = str(message.message)
         reactor = [
                 "ツ",
                 "ツ",
