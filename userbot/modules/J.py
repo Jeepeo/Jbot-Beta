@@ -97,6 +97,9 @@ async def imdb(e):
     			'\n<b>Story Line : </b>'+story_line,
     			link_preview = True , parse_mode = 'HTML'
     			)
+                except IndexError
+                    await e.edit("`Please check the movie name again \n Enter correct name`")
+                    return
 
 
 @bot.on(events.NewMessage(pattern=".lang", outgoing=True))
