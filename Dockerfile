@@ -17,7 +17,10 @@ RUN apk add --no-cache sqlite
 RUN adduser -D userbot
 RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
 USER userbot
+<<<<<<< HEAD
 #
+=======
+>>>>>>> 3e424d2... Merge branch 'staging' of https://github.com/baalajimaestro/Telegram-UserBot into staging
 # Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
