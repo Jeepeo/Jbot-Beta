@@ -66,6 +66,15 @@ questions() {
     fi
 }
 
+<<<<<<< HEAD
+#Fixup the poatgresql server
+postgresconfig() {
+TRACK = echo `ls /etc/postgresql`
+sudo mv init/pg_hba.conf  /etc/postgresql/$TRACK/main/pg_hba.conf
+sudo echo "listen_address = '*'" >> postgresql.conf
+}
+=======
+>>>>>>> 3e424d2... Merge branch 'staging' of https://github.com/baalajimaestro/Telegram-UserBot into staging
 # Config write function
 writeconfig() {
     echo "API_KEY=$API_KEY
@@ -123,6 +132,14 @@ reqinstall
 questions
 writeconfig
 
+<<<<<<< HEAD
+if [ "$DB" = "y" ]
+then
+postgresconfig
+fi
+ 
+=======
+>>>>>>> 3e424d2... Merge branch 'staging' of https://github.com/baalajimaestro/Telegram-UserBot into staging
 session
 dockerspin
 
