@@ -32,4 +32,4 @@ async def amialive(e):
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`UserBot version : 2.2-a\nBranch : Staging\nAt commit : 691`"
-                      "`\nLast update ------\n  Jeepeo😎 Edition 2.0`")
+                      "`\nLast update ------\n  Jeepeo😎 Edition 2.1`")
