@@ -18,6 +18,8 @@ RUN adduser -D userbot
 RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
 USER userbot
 #
+=======
+>>>>>>> 23aeb5e... heroku: Use Docker image building instead of Procfile
 # Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
