@@ -13,22 +13,29 @@ RUN apk add --no-cache python3 \
     py-pillow py-requests py-sqlalchemy py-psycopg2 \
     curl neofetch git sudo
 RUN apk add --no-cache sqlite
+<<<<<<< HEAD
 RUN adduser -D userbot
 RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
 USER userbot
 #
+=======
+>>>>>>> 23aeb5e... heroku: Use Docker image building instead of Procfile
 # Copy Python Requirements to /app
-#
-COPY ./requirements.txt /app/
-WORKDIR /app
 
+RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
+RUN adduser userbot --disabled-password --home /home/userbot
+RUN adduser userbot wheel
+USER userbot
+WORKDIR /home/userbot/userbot
+COPY ./requirements.txt /home/userbot/userbot
 #
 # Install requirements
 #
 RUN sudo pip3 install -r requirements.txt
-
 #
 # Copy bot files to /app
 #
-COPY . /app
+COPY . /home/userbot/userbot
+RUN sudo chown -R userbot /home/userbot/userbot
+RUN sudo chmod -R 777 /home/userbot/userbot
 cmd ["python3","-m","userbot"]
