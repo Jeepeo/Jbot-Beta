@@ -15,11 +15,7 @@ RUN apk add --no-cache python3 \
 RUN apk add --no-cache sqlite
 RUN adduser -D userbot
 RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
-<<<<<<< HEAD
-user userbot
-=======
 USER userbot
->>>>>>> d712438... WIP: Docker fixups on the init
 #
 # Copy Python Requirements to /app
 #
