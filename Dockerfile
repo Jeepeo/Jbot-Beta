@@ -12,11 +12,9 @@ RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' \
 #
 RUN apk add --no-cache python3 \
     py-pillow py-requests py-sqlalchemy py-psycopg2 \
-    curl neofetch git sudo
+    curl neofetch git
 RUN apk add --no-cache sqlite
-RUN adduser -D userbot
-RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
-user userbot
+
 #
 # Copy Python Requirements to /app
 #
@@ -26,7 +24,7 @@ WORKDIR /app
 #
 # Install requirements
 #
-RUN sudo pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 #
 # Copy bot files to /app
