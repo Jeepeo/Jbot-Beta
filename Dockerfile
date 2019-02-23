@@ -24,6 +24,7 @@ COPY ./requirements.txt /home/userbot/userbot
 #
 # Install requirements
 #
+RUN sudo pip3 install -U pip
 RUN sudo pip3 install -r requirements.txt
 #
 # Copy bot files to /app
