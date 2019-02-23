@@ -87,4 +87,25 @@ async def figlety(e):
 	p+='```'
 	await e.edit(p)
 
+@bot.on(events.NewMessage(pattern='^\.toilet (.+)'))
+@bot.on(events.MessageEdited(pattern='^\.toilet (.+)'))
+async def toilett(e):
+        l=['toilet']
+        l+=e.pattern_match.group(1).split(' ')
+        p='```'
+        p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
+        p+='```'
+        await e.edit(p)
+
+
+@bot.on(events.NewMessage(pattern='^\.cs (.+)'))
+@bot.on(events.MessageEdited(pattern='^\.cs (.+)'))
+async def cowsay(e):
+        l=['cowsay']
+        l+=e.pattern_match.group(1).split(' ')
+        p='```'
+        p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
+        p+='```'
+        await e.edit(p)  
+
 
