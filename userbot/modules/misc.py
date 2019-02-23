@@ -9,13 +9,12 @@ from subprocess import run as runapp
 
 import hastebin
 import pybase64
+import requests
 from telethon import events
-import random, re, os, signal
-import subprocess, time, sys
-from userbot import bot	
-import time
-from datetime import datetime
-from userbot import bot
+
+from userbot import LOGGER, LOGGER_GROUP, bot
+from userbot.modules.rextester.api import Rextester, UnknownLanguage
+
 DOGBIN_URL = "https://del.dog/"
 
 
@@ -36,6 +35,12 @@ async def paste(pstl):
         # Dogbin
         r = requests.post(DOGBIN_URL + "documents", data=message.encode('utf-8'))
 
+        # Hastebin
+        try:
+            hastebin_final_url = hastebin.post(message)
+        except Exception:
+            hastebin_final_url = "`Failed to reach hastebin`"
+
         if r.status_code == 200:
             response = r.json()
             key = response['key']
@@ -46,14 +51,18 @@ async def paste(pstl):
                     "`Pasted successfully!`\n\n"
                     f"`Shortened URL:` {dogbin_final_url}\n\n`"
                     "Original(non-shortened) URLs`\n"
-                    f"`Dogbin URL`: {DOGBIN_URL}v/{key}\n`")
+                    f"`Dogbin URL`: {DOGBIN_URL}v/{key}\n`"
+                    f"Hastebin URL`: {hastebin_final_url}")
             else:
                 reply_text = (
                     "`Pasted successfully!`\n\n"
-                    f"`Dogbin URL`: {dogbin_final_url}\n`")
+                    f"`Dogbin URL`: {dogbin_final_url}\n`"
+                    f"Hastebin URL`: {hastebin_final_url}")
         else:
             reply_text = (
-                "`Failed to reach Dogbin`")
+                "`Pasted successfully!`\n\n"
+                "`Dogbin URL`: `Failed to reach dogbin`"
+                f"\n`Hastebin URL`: {hastebin_final_url}")
 
         await pstl.edit(reply_text)
         if LOGGER:
@@ -281,6 +290,52 @@ async def chatidgetter(e):
             )
 
 
+@bot.on(events.NewMessage(outgoing=True, pattern="^\$"))
+async def rextestercli(e):
+    stdin = ""
+    message = e.text
+    chat = await e.get_chat()
+
+    if len(message.split()) > 1:
+        regex = re.search(
+            r"^\$([\w.#+]+)\s+([\s\S]+?)(?:\s+\/stdin\s+([\s\S]+))?$",
+            message,
+            re.IGNORECASE,
+        )
+        language = regex.group(1)
+        code = regex.group(2)
+        stdin = regex.group(3)
+
+        try:
+            rextester = Rextester(language, code, stdin)
+            res = await rextester.exec()
+        except UnknownLanguage as exc:
+            await e.edit(str(exc))
+            return
+
+        output = ""
+        output += f"**Language:**\n```{language}```"
+        output += f"\n\n**Source:** \n```{code}```"
+
+        if res.result:
+            output += f"\n\n**Result:** \n```{res.result}```"
+
+        if res.warnings:
+            output += f"\n\n**Warnings:** \n```{res.warnings}```\n"
+
+        if res.errors:
+            output += f"\n\n**Errors:** \n'```{res.errors}```"
+
+        if len(res.result) > 4096:
+            with io.BytesIO(str.encode(res.result)) as out_file:
+                out_file.name = "result.txt"
+                await bot.send_file(chat.id, file = out_file)
+                await e.edit(code)
+            return
+
+        await e.edit(output)
+
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unmutechat$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmutechat$"))
 async def unmute_chat(e):
@@ -346,5 +401,3 @@ async def botlogs(e):
         reply_to=e.id,
         caption="`Bot logs are here!`",
     )
-
-            await e.edit("**Name:** {} \n**User ID:** `{}`".format(name, user_id))
