@@ -14,7 +14,6 @@ RUN apk add --no-cache python3 \
     curl neofetch git sudo
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
-RUN apk add cowsay
 # Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
