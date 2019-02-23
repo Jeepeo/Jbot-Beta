@@ -1,7 +1,7 @@
 import io
 import random
 import re
-import time, sys
+import time
 from asyncio import create_subprocess_shell as asyncsh
 from asyncio.subprocess import PIPE as asyncsh_PIPE
 from subprocess import PIPE
@@ -10,6 +10,8 @@ from subprocess import run as runapp
 import hastebin
 import pybase64
 from telethon import events
+import random, re, os, signal
+import subprocess, time, sys
 from userbot import bot	
 import time
 from datetime import datetime
@@ -345,3 +347,4 @@ async def botlogs(e):
         caption="`Bot logs are here!`",
     )
 
+            await e.edit("**Name:** {} \n**User ID:** `{}`".format(name, user_id))
