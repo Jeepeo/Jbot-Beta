@@ -7,8 +7,9 @@ WantedBy=multi-user.target
 
 [Service]
 Type=simple
-User=root
-ExecStart=docker run userbot
+User=userbot
+WorkingDirectory=/tmp/Telegram-UserBot
+ExecStart=python3.7 -m userbot
 ProtectSystem=full
 Restart=on-failure
 # Other Restart options: or always, on-abort, etc

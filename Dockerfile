@@ -4,7 +4,8 @@ FROM alpine:3.9
 #
 # We have to uncomment Community repo for some packages
 #
-RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' -i /etc/apk/repositories
+RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' \
+      -i /etc/apk/repositories
 
 #
 # Install all the required packages
@@ -15,11 +16,7 @@ RUN apk add --no-cache python3 \
 RUN apk add --no-cache sqlite
 RUN adduser -D userbot
 RUN echo "userbot ALL=ALL NOPASSWD: ALL" >> /etc/sudoers
-<<<<<<< HEAD
 user userbot
-=======
-USER userbot
->>>>>>> d712438... WIP: Docker fixups on the init
 #
 # Copy Python Requirements to /app
 #
