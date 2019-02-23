@@ -124,10 +124,11 @@ async def terminal_runner(term):
             subprocess.run(["rm", "output.txt"], stdout=subprocess.PIPE)
 
         await term.edit(
-            f"root@Jeepeo55:~# "
+            f"**UltraRoot@Jeepeo55:~#**"#my wish
+            +"`\n\n`"
             + command
             + "`\n`"
-            + result + "`"
+            + result + ""
         )
 
         if LOGGER:

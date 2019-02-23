@@ -1,5 +1,6 @@
 from telethon import TelegramClient, events
 from telethon.tl.functions.contacts import BlockRequest
+from userbot.modules.sql_helper.pm_permit_sql import dissprove
 
 from userbot import COUNT_PM, LOGGER, LOGGER_GROUP, NOTIF_OFF, PM_AUTO_BAN, bot
 
