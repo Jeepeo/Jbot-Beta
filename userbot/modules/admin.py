@@ -30,7 +30,7 @@ async def promote(promt):
 
         # Self explanatory
         if not await promt.get_reply_message():
-            await promt.edit("`Give a reply message`")
+            await promt.edit("`Jeepeo Gib a reply message`")
         elif not admin and creator:
             rights = new_rights
         elif not admin and not creator:
@@ -348,7 +348,7 @@ async def gspider(gspdr):
             return
 
         gmute(str((await gspdr.get_reply_message()).sender_id))
-        await gspdr.edit("`Grabs a huge, sticky duct tape!`")
+        await gspdr.edit("`Ooof ! Here's your strong tape , apply it in ur mouth`")
         sleep(5)
         await gspdr.delete()
         await gspdr.respond("`Taped!`")

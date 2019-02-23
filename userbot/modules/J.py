@@ -19,7 +19,7 @@ from userbot import LOGGER, LOGGER_GROUP, bot
 
 langi = "en"
 
-
+#kanged from Blank-x ;---;
 @bot.on(events.NewMessage(outgoing=True,pattern='.imdb (.*)'))
 @bot.on(events.MessageEdited(outgoing=True,pattern='.imdb (.*)'))
 async def imdb(e):
@@ -98,7 +98,7 @@ async def imdb(e):
     			link_preview = True , parse_mode = 'HTML'
     			)
 
-
+#I dont'know what the hell this is (kanged)....................................................
 @bot.on(events.NewMessage(pattern=".lang", outgoing=True))
 @bot.on(events.MessageEdited(pattern=".lang", outgoing=True))
 async def lang(e):
@@ -135,8 +135,8 @@ async def lol(e):
         await e.edit(t)
 
 
+#SMK command for FUn ---------------------------------------------------------------------------
 
- #An sucking module, so leave it
 @bot.on(events.NewMessage(outgoing=True, pattern="^.smk (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.smk (.*)"))
 async def smrk(e):
@@ -149,8 +149,6 @@ async def smrk(e):
             message = textx
             message = str(message.message)
         reactor = [
-                "ツ",
-                "ツ",
                 "ツ",
         ]
         reply_text = re.sub(r"(r|l)", "w", message)

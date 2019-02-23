@@ -174,6 +174,17 @@ For using Heroku CLI on termux, please Google on it.
 - If you need Database Commands, provision a heroku postgres instance.
 - Push you bot along with `config.env` and `userbot.session` with the heroku cli, you need `git add -f` to add both of them.
 - Deploy.
+- Type thses command for it:
+
+`git add -f userbot.session`
+`git commit -m "Pushing userbot.session"`
+`git push`
+
+Voila ! You made it
+
+
+- Note may need to config your Git so be in your private repo
+- Go to folder of your repo
 
 
 ### Available Commands on readme have been removed due to non-maintainability. It follows marie syntax, replace all ! and / with a .
