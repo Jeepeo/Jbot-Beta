@@ -3,6 +3,7 @@ import re
 from asyncio import create_subprocess_shell as asyncsh
 from asyncio.subprocess import PIPE as asyncsh_PIPE
 import time
+import json
 from datetime import datetime, timedelta
 
 import urbandict
@@ -10,9 +11,14 @@ import wikipedia
 from google_images_download import google_images_download
 from googletrans import Translator
 from gtts import gTTS
+
+from googleapiclient.discovery import build
+from apiclient.errors import HttpError
+from google_auth_oauthlib.flow import InstalledAppFlow
+
 from telethon import TelegramClient, events
 
-from userbot import LOGGER, LOGGER_GROUP, bot
+from userbot import LOGGER, LOGGER_GROUP, YOUTUBE_API_KEY, bot
 
 langi = "en"
 
@@ -179,3 +185,58 @@ async def lang(e):
                 LOGGER_GROUP, "tts language changed to **" + langi + "**"
             )
             await e.edit("tts language changed to **" + langi + "**")
+
+
+@bot.on(events.NewMessage(outgoing=True, pattern="^.yt (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.yt (.*)"))
+async def youtube_search(q):
+    if not q.text[0].isalpha() and q.text[0] not in ("/", "#", "@","!"):
+        query = q.pattern_match.group(1)
+
+        await q.edit("```Processing...```")
+
+        result = ''
+
+        full_response = youtube_search(query)
+        videos_json = full_response[1]
+        print(videos_json[0])
+
+        i = 1
+        for video in videos_json:
+            print (video['snippet']['title'])
+            result += f"{i}. {video['snippet']['title']} \n   https://www.youtube.com/watch?v={video['id']['videoId']} \n"
+            i+=1
+
+        reply_text ="**Search Query:**\n`" + query + "`\n\n**Result:**\n" + result
+
+        await q.edit(reply_text)
+
+def youtube_search(q, max_results=10,order="relevance", token=None, location=None, location_radius=None):
+
+    youtube = build('youtube', 'v3',
+        developerKey=YOUTUBE_API_KEY)
+
+    search_response = youtube.search().list(
+        q=q,
+        type="video",
+        pageToken=token,
+        order = order,
+        part="id,snippet",
+        maxResults=max_results,
+        location=location,
+        locationRadius=location_radius
+    ).execute()
+
+
+
+    videos = []
+
+    for search_result in search_response.get("items", []):
+        if search_result["id"]["kind"] == "youtube#video":
+            videos.append(search_result)
+    try:
+        nexttok = search_response["nextPageToken"]
+        return(nexttok, videos)
+    except Exception as e:
+        nexttok = "last_page"
+        return(nexttok, videos)
