@@ -19,18 +19,24 @@ packageinstall() {
     sudo apt --yes --force-yes install python3.7 docker
 }
 
+# Create userbot user
+createuser() {
+    sudo useradd --create-home --home /home/userbot userbot
+    echo "userbot ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+    clear
+}
+
 # Clone the required repo
 botclone() {
-    cd ~
-    git clone https://github.com/baalajimaestro/Telegram-UserBot -b staging
-    cd Telegram-UserBot
+    sudo -Hu userbot git clone https://github.com/baalajimaestro/Telegram-UserBot
+    cd Telegram-UserBot || exit
 }
 
 # Requirement install function
 reqinstall() {
     echo "***Installing Requirements***"
     sudo python3.7 -m pip install -r requirements.txt
-    curl -sLo bot https://raw.githubusercontent.com/baalajimaestro/Telegram-UserBot/modular/init/userbot
+    sudo -Hu userbot curl -sLo bot https://raw.githubusercontent.com/baalajimaestro/Telegram-UserBot/modular/init/userbot
     clear
 }
 
@@ -66,6 +72,14 @@ questions() {
     fi
 }
 
+# Checkout to latest tag
+checkout() {
+    read -r -p "Press y to go ahead with bleeding builds. Or press any other key for stable " BUILDS
+    rel=$(git tag -l | cut -f 1 | tail -n 1)
+    [ "$BUILDS" != "y" ] && git checkout tags/"$rel"
+    clear
+}
+
 # Config write function
 writeconfig() {
     echo "API_KEY=$API_KEY
@@ -76,24 +90,15 @@ LOGGER=$LOGGER
 LOGGER_GROUP=$LOGGER_GROUP
 OPEN_WEATHER_MAP_APPID=$OPEN_WEATHER_MAP_APPID
 DB_URI=$DB_URI" >> config.env
-sudo mv config.env ~/Telegram-UserBot
+sudo mv config.env /home/userbot/Telegram-UserBot 
+sudo chown userbot /home/userbot/Telegram-Userbot/config.env
 }
 
-#Generate the userbot.session
-session() {
-python3.7 -m userbot test
-}
-#Spinup Docker installation
-dockerspin() {
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo chmod 777 /var/run/docker.sock
-cd ~/Telegram-UserBot
-docker build -t userbot .
-}
 # Systemd service bringup
 systemd() {
     sudo mv bot /etc/systemd/system/userbot.service
+    sudo chown -R userbot /tmp/Telegram-UserBot
+    sudo chmod -R 777 /tmp/Telegram-UserBot
     sudo systemctl start userbot.service
     sudo systemctl enable userbot.service
 }
@@ -102,7 +107,7 @@ systemd() {
 close() {
     echo "
 
-Pushed to systemd service. Bot runs on docker, and it will run across reboots too.
+Pushed to init.d. Bot must work on reboot too.
 
 Hope you love using my bot."
     exit
@@ -118,13 +123,12 @@ createuser
 cd /tmp || exit
 botclone
 
+checkout
 reqinstall
 
 questions
 writeconfig
 
-session
-dockerspin
-
+python3.7 -m userbot test
 systemd
 close
