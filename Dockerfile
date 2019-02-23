@@ -13,10 +13,9 @@ RUN apk add --no-cache python3 \
     py-pillow py-requests py-sqlalchemy py-psycopg2 \
     curl neofetch git sudo
 RUN apk add --no-cache sqlite
-
-FROM python:3.6-alpine
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
-pip install psycopg2
+
+pip install psycopg2-binary
 # Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
