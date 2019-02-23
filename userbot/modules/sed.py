@@ -54,6 +54,14 @@ def separate_sed(sed_string):
         return replace, replace_with, flags.lower()
 
 
+
+def strike(text):
+    result = ''
+    for c in text:
+        result = result + c + '\u0336'
+    return result
+
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^sed"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^sed"))
 async def sed(e):
@@ -78,20 +86,20 @@ async def sed(e):
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
-            if check and check.group(0).lower() == to_fix.lower():
-                await e.edit(
-                    "`Boi!, that's a reply. Don't use sed`"
-                    )
-                return
+            # if check and check.group(0).lower() == to_fix.lower():
+            #     await e.edit(
+            #         "`Boi!, that's a reply. Don't use sed`"
+            #         )
+            #     return
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
             elif "i" in flags:
-                text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
+                text = re.sub(repl, repl_with, to_fix, count=1, flags=re.I).strip()
             elif "g" in flags:
                 text = re.sub(repl, repl_with, to_fix).strip()
             else:
-                text = re.sub(repl, repl_with, to_fix).strip()
+                text = re.sub(repl, f" {strike(repl)} {repl_with}", to_fix,).strip()
         except sre_constants.error:
             LOGGER.warning(e.text)
             LOGGER.exception("SRE constant error")
