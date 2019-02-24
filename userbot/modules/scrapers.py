@@ -18,12 +18,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 from telethon import TelegramClient, events
 
-<<<<<<< HEAD
-from userbot import LOGGER, LOGGER_GROUP, YOUTUBE_API_KEY, bot
-=======
-from userbot import LOGGER, LOGGER_GROUP
+from userbot import LOGGER, LOGGER_GROUP, YOUTUBE_API_KEY
 from userbot.events import register
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 
 langi = "en"
 

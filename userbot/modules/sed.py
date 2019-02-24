@@ -55,20 +55,7 @@ def separate_sed(sed_string):
         return replace, replace_with, flags.lower()
 
 
-<<<<<<< HEAD
-
-def strike(text):
-    result = ''
-    for c in text:
-        result = result + c + '\u0336'
-    return result
-
-
-@bot.on(events.NewMessage(outgoing=True, pattern="^sed"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^sed"))
-=======
 @register(outgoing=True, pattern="^sed")
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def sed(e):
     sed_result = separate_sed(e.text)
     L = await e.get_reply_message()
@@ -91,19 +78,11 @@ async def sed(e):
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
-<<<<<<< HEAD
-            # if check and check.group(0).lower() == to_fix.lower():
-            #     await e.edit(
-            #         "`Boi!, that's a reply. Don't use sed`"
-            #         )
-            #     return
-=======
             if check and check.group(0).lower() == to_fix.lower():
                 await e.edit(
                     "`Boi!, that's a reply. Don't use sed`"
                 )
                 return
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()

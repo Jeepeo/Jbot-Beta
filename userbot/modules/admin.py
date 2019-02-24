@@ -148,13 +148,8 @@ async def thanos(bon):
             return
 
         # Announce that we're going to whacking the pest
-<<<<<<< HEAD
         await bon.edit("`whacking the BITCH!`")
-        await bot(
-=======
-        await bon.edit("`Whacking the pest!`")
-        await bon.client(
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
+        await bot.client(
             EditBannedRequest(
                 bon.chat_id,
                 sender.sender_id,
