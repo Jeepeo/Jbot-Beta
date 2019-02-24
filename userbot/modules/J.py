@@ -127,3 +127,17 @@ async def smrk(e):
         reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
         reply_text += " " + random.choice(reactor)
         await e.edit(reply_text)
+
+
+@register(outgoing=True, pattern="^.repeat (.*) (.*)")
+async def repeat(rep):
+    if not rep.text[0].isalpha() and rep.text[0] not in ("/", "#", "@", "!"):
+        replyCount = int(rep.pattern_match.group(1))
+        toBeRepeated = rep.pattern_match.group(2)
+
+        replyText = toBeRepeated
+
+        for i in range(0, replyCount-1):
+            replyText += toBeRepeated[-1:]
+
+        await rep.edit(replyText)
