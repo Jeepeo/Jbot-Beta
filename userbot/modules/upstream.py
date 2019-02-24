@@ -2,11 +2,10 @@ import subprocess
 
 from telethon import events
 
-from userbot import bot
+from userbot.events import register
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.updatebleeding$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.updatebleding$"))
+@register(outgoing=True, pattern="^.updatebleeding$")
 async def bleeding_upstream(bleed):
     await bleed.edit("`Please wait while I upstream myself!`")
     subprocess.run(
@@ -49,10 +48,10 @@ async def bleeding_upstream(bleed):
             "origin/staging"
         ], stdout=subprocess.PIPE,)
     await bleed.edit("`Shutting down for the upstream, Restart the bot kthx`")
-    bot.disconnect()
+    bleed.client.disconnect()
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.updatestable$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.updatestable$"))
+
+@register(outgoing=True, pattern="^.updatestable$")
 async def stable_upstream(stable):
     await stable.edit("`Please wait while I upstream myself!`")
     subprocess.run(
@@ -94,5 +93,10 @@ async def stable_upstream(stable):
             "--hard",
             "origin/master"
         ], stdout=subprocess.PIPE,)
+<<<<<<< HEAD
     await stable.edit("`Restarting the bot ----Upstreaming`")
     bot.disconnect()
+=======
+    await stable.edit("`Shutting down for the upstream, Restart the bot kthx`")
+    stable.client.disconnect()
+>>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
