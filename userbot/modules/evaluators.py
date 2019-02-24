@@ -20,46 +20,18 @@ async def evaluate(e):
             return
         evaluation = eval(e.text[6:])
         if evaluation:
-<<<<<<< HEAD
-          if type(evaluation) == "str":
-            if len(evaluation) > 4096:
-                f = open("output.txt", "w+")
-                f.write(evaluation)
-                f.close()
-                await bot.send_file(
-=======
             if isinstance(evaluation) == "str":
                 if len(evaluation) > 4096:
                     f = open("output.txt", "w+")
                     f.write(evaluation)
                     f.close()
                 await e.client.send_file(
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
                     e.chat_id,
                     "output.txt",
                     reply_to=e.id,
                     caption="`Output too large, sending as file`",
                 )
                 subprocess.run(["rm", "sender.txt"], stdout=subprocess.PIPE)
-<<<<<<< HEAD
-          await e.edit(
-                "**Query: **\n`"
-                + e.text[6:]
-                + "`\n**Result: **\n`"
-                + str(evaluation)
-                + "`"
-           )
-        else:
-            await e.edit(
-                "**Query: **\n`"
-                + e.text[6:]
-                + "`\n**Result: **\n`No Result Returned/False`"
-            )
-        if LOGGER:
-            await bot.send_message(
-                LOGGER_GROUP, "Eval query " + e.text[6:] + " was executed successfully"
-            )
-=======
         await e.edit(
             "**Query: **\n`"
             + e.text[6:]
@@ -78,7 +50,6 @@ async def evaluate(e):
             LOGGER_GROUP, "Eval query " +
             e.text[6:] + " was executed successfully"
         )
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 
 
 @register(outgoing=True, pattern=r"^.exec (.*)")
@@ -114,14 +85,9 @@ async def run(e):
                 + "`"
             )
         if LOGGER:
-<<<<<<< HEAD
-            await bot.send_message(
-                LOGGER_GROUP, "Exec query " + e.text[5:] + " was executed successfully"
-=======
             await e.client.send_message(
                 LOGGER_GROUP,
                 "Exec query " + e.text[5:] + " was executed successfully"
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
             )
 
 

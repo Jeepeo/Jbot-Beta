@@ -26,3 +26,4 @@ pyfiglet
 lxml
 cowsay
 google-api-python-client
+google-auth-oauthlib

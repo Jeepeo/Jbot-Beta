@@ -63,24 +63,14 @@ async def permitpm(e):
                         )
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True,pattern="^.notifoff$"))
-@bot.on(events.MessageEdited(outgoing=True,pattern="^.notifoff$"))
-=======
 @register(outgoing=True, pattern="^.notifoff$")
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def notifoff(e):
     global NOTIF_OFF
     NOTIF_OFF = True
     await e.edit("`Notifications silenced!`")
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True,pattern="^.notifon$"))
-@bot.on(events.MessageEdited(outgoing=True,pattern="^.notifon$"))
-=======
 @register(outgoing=True, pattern="^.notifon$")
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def notifon(e):
     global NOTIF_OFF
     NOTIF_OFF = False
@@ -119,12 +109,7 @@ async def approvepm(apprvpm):
             )
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True,pattern="^.block$"))
-@bot.on(events.MessageEdited(outgoing=True,pattern="^.block$"))
-=======
 @register(outgoing=True, pattern="^.block$")
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def blockpm(block):
     if not block.text[0].isalpha() and block.text[0] not in ("/", "#", "@", "!"):
 
@@ -158,13 +143,8 @@ async def blockpm(block):
                 " was blocc'd!.",
             )
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True,pattern="^.unblock$"))
-@bot.on(events.MessageEdited(outgoing=True,pattern="^.unblock$"))
-=======
 
 @register(outgoing=True, pattern="^.unblock$")
->>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def unblockpm(unblock):
     if not unblock.text[0].isalpha() and unblock.text[0] \
             not in ("/", "#", "@", "!") and unblock.reply_to_msg_id:
