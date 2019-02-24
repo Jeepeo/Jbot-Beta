@@ -7,7 +7,7 @@ from distutils.util import strtobool as sb
 from dotenv import load_dotenv
 from requests import get
 from telethon import TelegramClient
-
+from telethon.sessions import StringSession
 
 load_dotenv("config.env")
 
@@ -29,6 +29,8 @@ except NameError:
     API_KEY = os.environ.get("API_KEY", None)
 
     API_HASH = os.environ.get("API_HASH", None)
+
+    STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
@@ -66,7 +68,8 @@ else:
     )
     quit(1)
 
-bot = TelegramClient("userbot", API_KEY, API_HASH)
+
+bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
 
 if os.path.exists("brains.check"):
     os.remove("brains.check")
