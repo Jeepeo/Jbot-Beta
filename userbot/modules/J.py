@@ -15,7 +15,7 @@ from gtts import gTTS
 from telethon import TelegramClient, events
 from pyfiglet import Figlet
 
-from userbot import LOGGER, LOGGER_GROUP, 
+from userbot import LOGGER, LOGGER_GROUP
 from userbot.events import register
 
 langi = "en"
