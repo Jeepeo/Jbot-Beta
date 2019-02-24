@@ -181,8 +181,7 @@ async def lang(e):
             await e.edit("tts language changed to **" + langi + "**")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.yt (.*)"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.yt (.*)"))
+@register(outgoing=True, pattern="^.yt (.*)")
 async def youtube_search(q):
     if not q.text[0].isalpha() and q.text[0] not in ("/", "#", "@","!"):
         query = q.pattern_match.group(1)

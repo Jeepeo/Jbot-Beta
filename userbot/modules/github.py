@@ -1,9 +1,9 @@
 import aiohttp
 from telethon import events
 
-from userbot import bot
+from userbot.events import register
 
-@bot.on(events.NewMessage(outgoing=True, pattern=r"^\.git (.*)"))
+@register(outgoing=True, pattern=r"^.git (.*)")
 async def github(e):
 
     URL = f"https://api.github.com/users/{e.pattern_match.group(1)}"
