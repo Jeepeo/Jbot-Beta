@@ -99,7 +99,7 @@ async def imdb(e):
     			)
 
 
-@register(outgoing=True, patern="^Oof$")
+@register(outgoing=True, pattern="^Oof$")
 async def Oof(e):
     t = "Oof"
     for j in range(10):
