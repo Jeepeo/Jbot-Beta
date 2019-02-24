@@ -25,4 +25,4 @@ cryptg
 pyfiglet
 lxml
 cowsay
-googleapiclient
+google-api-python-client
