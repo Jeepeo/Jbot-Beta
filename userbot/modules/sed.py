@@ -3,7 +3,8 @@ import sre_constants
 
 from telethon import events
 
-from userbot import LOGGER, LOGGER_GROUP, bot
+from userbot import LOGGER, LOGGER_GROUP
+from userbot.events import register
 
 DELIMITERS = ("/", ":", "|", "_")
 
@@ -54,6 +55,7 @@ def separate_sed(sed_string):
         return replace, replace_with, flags.lower()
 
 
+<<<<<<< HEAD
 
 def strike(text):
     result = ''
@@ -64,6 +66,9 @@ def strike(text):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^sed"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^sed"))
+=======
+@register(outgoing=True, pattern="^sed")
+>>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 async def sed(e):
     sed_result = separate_sed(e.text)
     L = await e.get_reply_message()
@@ -73,7 +78,7 @@ async def sed(e):
         else:
             await e.edit(
                 "`Master, I don't have brains. Well you too don't I guess.`"
-                )
+            )
             return
 
         repl, repl_with, flags = sed_result
@@ -81,16 +86,24 @@ async def sed(e):
         if not repl:
             await e.edit(
                 "`Master, I don't have brains. Well you too don't I guess.`"
-                )
+            )
             return
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
+<<<<<<< HEAD
             # if check and check.group(0).lower() == to_fix.lower():
             #     await e.edit(
             #         "`Boi!, that's a reply. Don't use sed`"
             #         )
             #     return
+=======
+            if check and check.group(0).lower() == to_fix.lower():
+                await e.edit(
+                    "`Boi!, that's a reply. Don't use sed`"
+                )
+                return
+>>>>>>> 5a5621a... Merge pull request #38 from YouTwitFace/staging
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
