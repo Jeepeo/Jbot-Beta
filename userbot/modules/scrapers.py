@@ -18,7 +18,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 from telethon import TelegramClient, events
 
-from userbot import LOGGER, LOGGER_GROUP, YOUTUBE_API_KEY
+from userbot import LOGGER, LOGGER_GROUP, YOUTUBE_API_KEY, bot
 from userbot.events import register
 
 langi = "en"
