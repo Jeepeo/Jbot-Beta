@@ -10,7 +10,9 @@ RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' -i /etc/apk/r
 # Install all the required packages
 #
 RUN apk add --no-cache python3 \
-    py-pillow py-requests py-sqlalchemy py-psycopg2 git py-lxml libxslt-dev py-pip libxml2 libxml2-dev libpq postgresql-dev postgresql build-base python-dev python3-dev \
+    py-pillow py-requests py-sqlalchemy py-psycopg2 git py-lxml \
+    libxslt-dev py-pip libxml2 libxml2-dev libpq postgresql-dev \
+    postgresql build-base python-dev python3-dev \
     curl neofetch git sudo
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
