@@ -28,5 +28,5 @@ async def hey(e):
 @register(outgoing=True, pattern="^.bover$")
 async def botversion(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`UserBot version : 2.2-a\nBranch : Staging\nAt commit : 691`"
+        await e.edit("`UserBot version : 2.2-a\nBranch : Staging\nAt commit : 710`"
                       "`\nLast update ------\n  Jeepeo😎 Edition 2.1`")
