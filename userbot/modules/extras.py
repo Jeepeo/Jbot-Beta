@@ -71,3 +71,12 @@ async def cowsay(e):
         await e.edit(p)  
 
 
+@register(outgoing=True, pattern="^.fs (.*)")
+async def figlety(e):
+    l=['figlet -f small']
+    l+=e.pattern_match.group(1).split(' ')
+    p='```'
+    p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
+    p+='```'
+    await e.edit(p)
+
