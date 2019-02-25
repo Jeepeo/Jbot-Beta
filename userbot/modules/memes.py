@@ -1,3 +1,10 @@
+# Copyright (C) 2018 Raphielscape LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.0 (the "License");
+# you may not use this file except in compliance with the License.
+#
+#
+
 import asyncio
 import random
 import re
@@ -7,8 +14,7 @@ from spongemock import spongemock
 from telethon import TelegramClient, events
 from zalgo_text import zalgo
 
-from userbot import (DISABLE_RUN, ENABLE_KILLME, LOGGER, LOGGER_GROUP,
-                     WIDE_MAP)
+from userbot import (DISABLE_RUN, WIDE_MAP)
 from userbot.events import register
 
 
