@@ -87,11 +87,11 @@ async def sed(e):
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
             elif "i" in flags:
-                text = re.sub(repl, repl_with, to_fix, count=1, flags=re.I).strip()
+                text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
             elif "g" in flags:
                 text = re.sub(repl, repl_with, to_fix).strip()
             else:
-                text = re.sub(repl, f" {strike(repl)} {repl_with}", to_fix,).strip()
+                text = re.sub(repl, repl_with, to_fix).strip()
         except sre_constants.error:
             LOGGER.warning(e.text)
             LOGGER.exception("SRE constant error")
