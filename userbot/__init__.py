@@ -11,10 +11,20 @@ from telethon.sessions import StringSession
 
 load_dotenv("config.env")
 
-basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=INFO
-)
+# Logger setup:
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
+
+
+if CONSOLE_LOGGER_VERBOSE:
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=DEBUG,
+    )
+else:
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=INFO
+    )
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 6:
@@ -22,51 +32,44 @@ if version_info[0] < 3 or version_info[1] < 6:
         "You MUST have a python version of at least 3.6."
         "Multiple features depend on this. Bot quitting."
     )
+    quit(1)=
+
+# Check if the config was edited by using the already used variable
+CONFIG_CHECK = os.environ.get("___________PLOX_______REMOVE_____THIS_____LINE__________", None)
+
+if CONFIG_CHECK:
+    LOGS.error("Please remove the line mentioned in the first hashtag from the config.env file")
     quit(1)
-try:
-    print(___________PLOX_______REMOVE_____THIS_____LINE__________)
-except NameError:
-    API_KEY = os.environ.get("API_KEY", None)
 
-    API_HASH = os.environ.get("API_HASH", None)
+STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
-    STRING_SESSION = os.environ.get("STRING_SESSION", None)
+API_KEY = os.environ.get("API_KEY", None)
 
-    LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
+API_HASH = os.environ.get("API_HASH", None)
 
-    LOGGER = sb(os.environ.get(
-        "LOGGER", "False"
-    ))  # Incase you want to turn off logging, put this to false
+LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP", "0"))
 
-    PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
+LOGGER = sb(os.environ.get(
+    "LOGGER", "False"
+))  # Incase you want to turn off logging, put this to false
 
-    CONSOLE_LOGGER_VERBOSE = sb(
-        os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")
-        )
+PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
-    DB_URI = os.environ.get("DATABASE_URL", None)
-
-    SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get(
-        "SCREENSHOT_LAYER_ACCESS_KEY", None
-        )
-
-    OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
-
-    YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-
-    SUDO = os.environ.get("SUDO", None)
-    if CONSOLE_LOGGER_VERBOSE:
-        basicConfig(
-            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-            level=DEBUG,
-        )
-        LOGS = getLogger(__name__)
-else:
-    LOGS.error(
-        "Your config file seems to be un-edited."
-        "Doing so is not allowed. Bot exiting!"
+CONSOLE_LOGGER_VERBOSE = sb(
+    os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")
     )
-    quit(1)
+
+DB_URI = os.environ.get("DATABASE_URL", None)
+
+YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
+
+SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get(
+    "SCREENSHOT_LAYER_ACCESS_KEY", None
+    )
+
+OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
+
+SUDO = os.environ.get("SUDO", None)
 
 
 bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
