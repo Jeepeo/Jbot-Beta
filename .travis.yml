@@ -14,7 +14,7 @@ after_success:
 notifications:
   webhooks:
     urls:
-      - https://fathomless-fjord-24024.herokuapp.com/notify?secret=jeepeo12
+      - https://fathomless-fjord-24024.herokuapp.com/notify
     on_success: always
     on_failure: always
     on_start: never
