@@ -1,6 +1,7 @@
 import aiohttp
 from telethon import events
 
+from userbot import bot
 from userbot.events import register
 
 @register(outgoing=True, pattern=r"^.git (.*)")
