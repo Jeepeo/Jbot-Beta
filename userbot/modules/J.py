@@ -144,8 +144,7 @@ async def repeat(rep):
 
 #Kanged from Geg babé
 
-@bot.on(events.NewMessage(pattern="^.lmgtfy", outgoing=True))
-@bot.on(events.MessageEdited(pattern="^.lmgtfy", outgoing=True))
+@register(outgoing=True, pattern="^.lfy",)
 async def let_me_google_that_for_you(lmgtfy_q):
     if not lmgtfy_q.text[0].isalpha() and lmgtfy_q.text[0] not in ("/", "#", "@", "!"):
         textx = await lmgtfy_q.get_reply_message()
