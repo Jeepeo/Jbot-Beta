@@ -32,7 +32,7 @@ if version_info[0] < 3 or version_info[1] < 6:
         "You MUST have a python version of at least 3.6."
         "Multiple features depend on this. Bot quitting."
     )
-    quit(1)=
+    quit(1)
 
 # Check if the config was edited by using the already used variable
 CONFIG_CHECK = os.environ.get("___________PLOX_______REMOVE_____THIS_____LINE__________", None)
