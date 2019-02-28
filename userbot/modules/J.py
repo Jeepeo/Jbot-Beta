@@ -141,3 +141,23 @@ async def repeat(rep):
             replyText += toBeRepeated[-1:]
 
         await rep.edit(replyText)
+
+#Kanged from Geg babé
+
+@bot.on(events.NewMessage(pattern="^.lmgtfy", outgoing=True))
+@bot.on(events.MessageEdited(pattern="^.lmgtfy", outgoing=True))
+async def let_me_google_that_for_you(lmgtfy_q):
+    if not lmgtfy_q.text[0].isalpha() and lmgtfy_q.text[0] not in ("/", "#", "@", "!"):
+        textx = await lmgtfy_q.get_reply_message()
+        query = lmgtfy_q.text
+        if query[8:]:
+            query = str(query[8:])
+        elif textx:
+            query = str(textx.message)
+        reply_text = 'http://lmgtfy.com/?s=g&iie=1&q=' + query.replace(" ", "+")
+        await lmgtfy_q.edit(reply_text)
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                "LMGTFY query " + query + " was executed successfully",
+            )
