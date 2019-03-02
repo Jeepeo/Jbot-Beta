@@ -23,6 +23,7 @@ langi = "en"
 #kanged from Blank-x ;---;
 @register(outgoing=True, pattern="^.imdb (.*)")
 async def imdb(e):
+ try:
     movie_name = e.pattern_match.group(1)
     remove_space = movie_name.split(' ')
     final_name = '+'.join(remove_space)
@@ -97,6 +98,8 @@ async def imdb(e):
     			'\n<b>Story Line : </b>'+story_line,
     			link_preview = True , parse_mode = 'HTML'
     			)
+ except IndexError:
+     await e.edit("Plox enter **Valid movie name** kthx")
 
 
 @register(outgoing=True, pattern="^Oof$")
