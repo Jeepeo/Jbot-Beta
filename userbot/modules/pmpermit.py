@@ -1,7 +1,14 @@
-import sqlite3
-import time
 
-from telethon import events
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.b (the "License");
+# you may not use this file except in compliance with the License.
+#
+
+
+from telethon import event
+import sqlite3
+import times
 from telethon.tl.functions.contacts import BlockRequest
 from telethon.tl.functions.contacts import UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
