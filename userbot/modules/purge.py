@@ -1,4 +1,10 @@
-import asyncio
+
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.b (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 import time
 
 from telethon.errors import rpcbaseerrors
@@ -83,7 +89,7 @@ async def delmsg(delme):
                         LOGGER_GROUP,
                         "Deletion of message was successful"
                     )
-            except Exception is rpcbaseerrors.BadRequestError:
+            except rpcbaseerrors.BadRequestError:
                 if LOGGER:
                     await delme.send_message(
                         LOGGER_GROUP,

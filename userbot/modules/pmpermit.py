@@ -10,6 +10,12 @@ from telethon.tl.functions.users import GetFullUserRequest
 from userbot import COUNT_PM, LOGGER, LOGGER_GROUP, NOTIF_OFF, PM_AUTO_BAN
 from userbot.events import register
 
+# ========================= CONSTANTS ============================
+UNAPPROVED_MSG = ("`Don't Afraid!😳 This is Jeepeo😎's BOT \n\n`"
+                   "`Jeepeo😎 hasn't approved you to PM😢.`"
+                   "`Please wait for Jeepeo😎 to look in, he would mostly approve PMs 😲.`\n\n"
+                   "`As I know , He doesn't reply to shit/retards😤.`")
+#=================================================================
 
 @register(incoming=True)
 async def permitpm(e):
@@ -22,18 +28,8 @@ async def permitpm(e):
                 return
             apprv = is_approved(e.chat_id)
 
-            if not apprv and e.text != \
-                ("`Don't Afraid!😳 This is Jeepeo😎's BOT \n\n`"
-                 "`Jeepeo😎 hasn't approved you to PM😢.`"
-                 "`Please wait for Jeepeo😎 to look in, he would mostly approve PMs😲.`\n\n"
-                 "`As I know , He doesn't reply to shit/retards😤.`"):
-
-                await e.reply(
-                    "`Don't Afraid!😳 This is Jeepeo😎's BOT \n\n`"
-                    "`Jeepeo😎 hasn't approved you to PM😢.`"
-                    "`Please wait for Jeepeo😎 to look in, he would mostly approve PMs😲.`\n\n"
-                    "`As I know , He doesn't reply to shit/retards😤.`"
-                )
+            if not apprv and e.text != UNAPPROVED_MSG:
+                await e.reply(UNAPPROVED_MSG)
 
                 if NOTIF_OFF:
                     await e.client.send_read_acknowledge(e.chat_id)
