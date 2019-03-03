@@ -1,4 +1,4 @@
-from userbot import bot
+from userbot.events import register
 from telethon import events
 import asyncio
 from datetime import datetime
