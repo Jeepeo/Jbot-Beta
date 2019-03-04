@@ -1,6 +1,8 @@
 import urllib
+import re
 import emoji
 import aiohttp
+import bs4
 from userbot.events import register
 from telethon import events
 
