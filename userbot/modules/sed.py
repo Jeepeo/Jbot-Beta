@@ -1,9 +1,7 @@
 import re
-import sre_constants
+from sre_constants import error as sre_err
 
-from telethon import events
 
-from userbot import LOGGER, LOGGER_GROUP
 from userbot.events import register
 
 DELIMITERS = ("/", ":", "|", "_")
@@ -91,10 +89,8 @@ async def sed(e):
             elif "g" in flags:
                 text = re.sub(repl, repl_with, to_fix).strip()
             else:
-                text = re.sub(repl, repl_with, to_fix).strip()
-        except sre_constants.error:
-            LOGGER.warning(e.text)
-            LOGGER.exception("SRE constant error")
+                text = re.sub(repl, repl_with, to_fix, count=1).strip()
+        except sre_err:
             await e.edit("B O I! [Learn Regex](https://regexone.com)")
             return
         if text:

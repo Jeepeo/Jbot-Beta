@@ -1,9 +1,17 @@
-import asyncio
+
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.b (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
+from platform import python_version, uname
 from shutil import which
 
 from telethon import events
+from telethon import version
 
 from userbot import LOGGER, LOGGER_GROUP
 from userbot.events import register
@@ -88,3 +96,16 @@ async def pipcheck(pip):
             f"{pipout}"
             "`"
         )
+
+
+@register(outgoing=True, pattern="^.alive$")
+async def amireallyalive(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit(
+            "`"
+            "Jeepeo😎 I'm running \n\n"
+            f"Telethon version: {version.__version__} \n"
+            f"Python: {python_version()} \n"
+            f"User: {uname().node}"
+            "`"
+            )
