@@ -31,3 +31,4 @@ google-auth-oauthlib
 lmgtfy
 incremental
 emoji
+language_check
