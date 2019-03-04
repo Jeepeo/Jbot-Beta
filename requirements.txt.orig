@@ -31,3 +31,7 @@ google-auth-oauthlib
 lmgtfy
 incremental
 emoji
+<<<<<<< HEAD
+language_check
+=======
+>>>>>>> 808e8dd... [ADD]Added gangstify module from tg-companion

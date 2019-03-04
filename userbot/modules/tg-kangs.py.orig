@@ -1,6 +1,13 @@
 import urllib
+<<<<<<< HEAD
+import re
 import emoji
 import aiohttp
+import bs4
+=======
+import emoji
+import aiohttp
+>>>>>>> 808e8dd... [ADD]Added gangstify module from tg-companion
 from userbot.events import register
 from telethon import events
 
@@ -13,6 +20,17 @@ async def gangstafy_text(event):
         rep_msg = await event.get_reply_message()
         message = rep_msg.text
     elif len(split_text) == 1:
+<<<<<<< HEAD
+        await event.edit("...")
+        return
+
+    elif not message:
+        await event.edit("`Unsuported message`")
+        return
+    else:
+        message = split_text[1]
+    await event.edit(await __gangsafy(message))
+=======
         await client.update_message(event, "...")
         return
 
@@ -22,6 +40,7 @@ async def gangstafy_text(event):
     else:
         message = split_text[1]
     await client.update_message(event, await __gangsafy(message))
+>>>>>>> 808e8dd... [ADD]Added gangstify module from tg-companion
 
 #===============FUNCTION HELPERS=================================#
 async def __gangsafy(text):
