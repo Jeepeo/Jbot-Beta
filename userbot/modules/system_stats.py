@@ -9,6 +9,7 @@ from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from platform import python_version, uname
 from shutil import which
+from .._version import __version__
 
 from telethon import events
 from telethon import version
@@ -101,11 +102,13 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.alive$")
 async def amireallyalive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        bot_version = __version__.public()
         await e.edit(
             "`"
             "Jeepeo😎 I'm running \n\n"
+            f"Telegram-Userbot: {bot_version} \n"
             f"Telethon version: {version.__version__} \n"
             f"Python: {python_version()} \n"
-            f"User: {uname().node}"
+            f"User: Jeepe055"
             "`"
             )
