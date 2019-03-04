@@ -1,4 +1,4 @@
-telethon==1.6.2
+telethon==1.6.1
 requests>=2.18.4
 gtts>=2.0.1
 urbandict>=0.5
@@ -31,3 +31,7 @@ google-auth-oauthlib
 lmgtfy
 incremental
 emoji
+<<<<<<< HEAD
+language_check
+=======
+>>>>>>> 808e8dd... [ADD]Added gangstify module from tg-companion
