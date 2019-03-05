@@ -6,6 +6,7 @@ import bs4
 from userbot.events import register
 from telethon import events
 from userbot import bot
+from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.types import (DocumentAttributeFilename,
                                InputMediaUploadedDocument,
                                InputStickerSetShortName,
