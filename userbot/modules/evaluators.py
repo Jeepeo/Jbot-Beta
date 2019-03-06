@@ -91,47 +91,6 @@ async def run(e):
             )
 
 
-@register(outgoing=True, pattern="^.term")
-async def terminal_runner(term):
-    if not term.text[0].isalpha() and term.text[0] not in ("/", "#", "@", "!"):
-        if term.is_channel and not term.is_group:
-            await term.edit("`Term Commands aren't permitted on channels`")
-            return
-        message = term.text
-        curruser = getuser()
-        command = str(message)
-        command = str(command[6:])
-        process = await asyncio.create_subprocess_shell(
-            command,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE
-        )
-        stdout, stderr = await process.communicate()
-        result = str(stdout.decode().strip()) \
-            + str(stderr.decode().strip())
-
-        if len(result) > 4096:
-            output = open("output.txt", "w+")
-            output.write(result)
-            output.close()
-            await term.client.send_file(
-                term.chat_id,
-                "sender.txt",
-                reply_to=term.id,
-                caption="`Output too large, sending as file`",
-            )
-            subprocess.run(["rm", "output.txt"], stdout=subprocess.PIPE)
-
-        await term.edit(
-            f"**UltraRoot@Jeepeo55:~#**"#my wish
-            +"`\n\n`"
-            + command
-            + "`\n`"
-            + result + ""
-        )
-
-        if LOGGER:
-            await term.client.send_message(
-                LOGGER_GROUP,
-                "Terminal Command " + command + " was executed sucessfully",
-            )
+#=====YOU FOUND EASTER EGG ===========
+ 
+        #Geg is gei
