@@ -141,18 +141,30 @@ async def thanos(bon):
             return
 
         # Announce that we're going to whacking the pest
-        await bon.edit("`whacking the BITCH!`")
-        await bot.client(
+        await bon.edit("`Whacking the pest!`")
+        try:
+            await bon.client(
             EditBannedRequest(
                 bon.chat_id,
                 sender.sender_id,
                 banned_rights
             )
         )
-
+        except Exception as e:
+            await bon.edit("`I couldn't ban this user! Possible reasons: \
+                             Maybe the admin status was appointed by someone else.`")
+            return
+        # Helps ban group join spammers more easily
+        try:
+            await sender.delete() 
+        except Exception as e:
+            await bon.edit("`I dont have message nuking rights! But still he was banned!`")
+            return
         # Delete message and then tell that the command
         # is done gracefully
-        await bon.edit("`The bitch is Banned!`")
+        # Shout out the ID, so that fedadmins can fban later
+
+        await bon.edit("`{}` was banned!".format(str(sender.sender_id)))
 
         # Announce to the logging group if we done a banning
         if LOGGER:
