@@ -26,6 +26,15 @@ export BOT_API_KEY PARSE_BRANCH PARSE_ORIGIN COMMIT_POINT TELEGRAM_TOKEN
 kickstart_pub
 
 function get_session {
+<<<<<<< HEAD
+    wget $PULL_LINK
+}
+
+function test_run {
+	sudo apt install python3 python3-pip
+    pip install -r requirements.txt
+    python3 -m userbot test
+=======
     curl -sLo userbot.session $PULL_LINK
 }
 
@@ -37,6 +46,7 @@ function test_run {
     BUILD_END=$(date +"%s")
     BUILD_TIME=$(date +"%Y%m%d-%T")
     DIFF=$((BUILD_END - BUILD_START))	
+>>>>>>> 6394b13ef485055c73029aa34e78663c956ff7c1
     check_if_error
 }
 
