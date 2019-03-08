@@ -6,7 +6,7 @@ import asyncio
 import requests
 
 
-@register(ourgoing=True, pattern="^.kod")
+@register(outgoing=True, pattern="^.kod")
 async def _(event):
     if event.fwd_from:
         return
