@@ -23,16 +23,12 @@ async def _(event):
         "line": True
     }).json()
     img_url = a["hasil"]["karbon"]
-    reply_message_id = event.message.id
-    if event.reply_to_msg_id:
-        reply_message_id = event.reply_to_msg_id
     try:
         await bot.send_file(
             event.chat_id,
             img_url,
             force_document=False,
             allow_cache=False,
-            reply_to=reply_message_id
         )
         await event.delete()
     except Exception as e:
