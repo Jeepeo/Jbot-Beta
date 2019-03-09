@@ -6,9 +6,9 @@
 #
 
 
-from telethon import event
+from telethon import events
 import sqlite3
-import times
+import time
 from telethon.tl.functions.contacts import BlockRequest
 from telethon.tl.functions.contacts import UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
