@@ -1,4 +1,4 @@
-
+#A module made by sunda001
 from telethon import events
 from userbot import bot 
 from userbot.events import register
@@ -6,12 +6,12 @@ import asyncio
 import requests
 
 
-@register(outgoing=True, pattern="^.kod")
+@register(outgoing=True, pattern="^.kod (.*)")
 async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    DELIMITER = "|;|"
+    DELIMITER = "|"
     if DELIMITER not in input_str:
         await event.edit("Invalid Syntax")
         return False
@@ -31,7 +31,7 @@ async def _(event):
             event.chat_id,
             img_url,
             caption=code,
-            force_document=True,
+            force_document=False,
             allow_cache=False,
             reply_to=reply_message_id
         )
