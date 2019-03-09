@@ -30,7 +30,6 @@ async def _(event):
         await bot.send_file(
             event.chat_id,
             img_url,
-            caption=code,
             force_document=False,
             allow_cache=False,
             reply_to=reply_message_id
