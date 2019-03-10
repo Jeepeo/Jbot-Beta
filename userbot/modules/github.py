@@ -1,51 +1,34 @@
-import aiohttp
 from telethon import events
-
-from userbot import bot
+import asyncio
+import requests
+import json
 from userbot.events import register
 
-@register(outgoing=True, pattern=r"^.git (.*)")
-async def github(e):
+@register(outgoing=True, pattern="^.git (.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    url = "https://api.github.com/users/{}".format(input_str)
+    r = requests.get(url)
+    if r.status_code != 404:
+        b = r.json()
+        avatar_url = b["avatar_url"]
+        html_url = b["html_url"]
+        gh_type = b["type"]
+        name = b["name"]
+        company = b["company"]
+        blog = b["blog"]
+        location = b["location"]
+        bio = b["bio"]
+        created_at = b["created_at"]
+        await event.edit("""[\u2063]({})Name: [{}]({})
+Type: {}
+Company: {}
+Blog: {}
+Location: {}
+Bio: {}
+Profile Created: {}""".format(avatar_url, name, html_url, gh_type, company, blog, location, bio, created_at))
+    else:
+        await event.edit("`{}`: {}".format(input_str, r.text))
 
-    URL = f"https://api.github.com/users/{e.pattern_match.group(1)}"
-    chat = await e.get_chat()
-    async with aiohttp.ClientSession() as session:
-        async with session.get(URL) as request:
-            if request.status == 404:
-                await e.reply("`" + e.pattern_match.group(1) + " not found`")
-                return
-
-            result = await request.json()
-
-            url = result.get("html_url", None)
-            name = result.get("name", None)
-            company = result.get("company", None)
-            bio = result.get("bio", None)
-            created_at = result.get("created_at", "Not Found")
-
-            REPLY = f"""
-        GitHub Info for `{e.pattern_match.group(1)}`
-
-Username: `{name}`
-Bio: `{bio}`
-URL: {url}
-Company: `{company}`
-Created at: `{created_at}`
-            """
-            if not result.get("repos_url", None):
-                await bot.send_message(chat.id, message=REPLY, reply_to=e.id, link_preview=False)
-                return
-            async with session.get(result.get("repos_url", None)) as request:
-                result = request.json
-                if request.status == 404:
-                    await e.edit(REPLY)
-                    return
-
-                result = await request.json()
-
-                REPLY += "\nRepos:\n"
-
-                for nr in range(len(result)):
-                    REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
-
-                await bot.send_message(chat.id, message=REPLY, reply_to=e.id, link_preview=False)
