@@ -12,16 +12,7 @@ from userbot import SUDO
 
 
 def _start_instalation():
-    package_managers = [
-        "pacman",
-        "apt-get",
-        "yum",
-        "brew",
-        "yaourt",
-        "dnf",
-        "homebrew",
-        "eopkg",
-        "snap"]
+    package_managers = ["apt-get"]
 
     if "linux" in str(platform.system()).lower():
         for manager in package_managers:
