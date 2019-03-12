@@ -290,11 +290,6 @@ async def zal(zgfy):
         await zgfy.edit(zalgofied_text)
 
 
-@register(outgoing=True, pattern="^hi$")
-async def hoi(ha):
-    await ha.edit("Hoi!😄")
-
-
 @register(outgoing=True, pattern="^.owo (.*)")
 async def faces(owo):
     if not owo.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
