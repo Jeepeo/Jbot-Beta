@@ -108,7 +108,7 @@ async def amireallyalive(e):
             "Jeepeo😎 I'm running \n\n"
             f"Telegram-Userbot: {bot_version} \n"
             f"Telethon version: {version.__version__} \n"
-            f"Python: {python_version()} \n"
-            f"User: Jeepe055"
+            f"Python:           {python_version()} \n"
+            f"User:             Jeepe055"
             "`"
             )
