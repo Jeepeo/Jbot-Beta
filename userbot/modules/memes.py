@@ -201,10 +201,10 @@ async def kek(keks):
 
 @register(outgoing=True, pattern="^-_-$")
 async def lol(lel):
-    ok = "-_-"
-    if range(10):
-        ok = ok[:-1] + "_-"
-        await lel.edit(ok)
+    t = "-_-"
+    for j in range(10):
+        t = t[:-1] + "_-"
+        await lel.edit(t)
 
 
 @register(outgoing=True, pattern="^.cp")
