@@ -4,7 +4,6 @@ from telethon import events
 from userbot.events import register
 
 
-#==============THIS IS COPYRIGHTED TO GEG ===============
 @register(outgoing=True, pattern="^.fix( (.*))?")
 async def grammar_check(to_fix):
     if not to_fix.text[0].isalpha() and to_fix.text[0] not in ("/", "#", "@", "!"):
@@ -36,5 +35,4 @@ async def grammar_check(to_fix):
                 await to_fix.edit("Did you mean? \n\n`" + result)
         else:
             await to_fix.edit(result)
-#=====================================================
 

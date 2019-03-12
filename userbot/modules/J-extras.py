@@ -145,7 +145,6 @@ async def repeat(rep):
 
         await rep.edit(replyText)
 
-#Kanged from Geg babé
 
 @register(outgoing=True, pattern="^.lfy",)
 async def let_me_google_that_for_you(lmgtfy_q):
