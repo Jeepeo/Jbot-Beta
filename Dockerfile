@@ -6,13 +6,42 @@ FROM alpine:3.9
 #
 RUN sed -e 's;^#http\(.*\)/v3.9/community;http\1/v3.9/community;g' -i /etc/apk/repositories
 
+# Installing Python 
+RUN apk add --no-cache --update \
+    git \
+    bash \
+    libffi-dev \
+    openssl-dev \
+    bzip2-dev \
+    zlib-dev \
+    readline-dev \
+    sqlite-dev \
+    build-base
+
+# Set Python version
+ARG PYTHON_VERSION='3.7.2'
+# Set pyenv home
+ARG PYENV_HOME=/root/.pyenv
+# Note installing THROUGH THIS METHOD WILL DELAY DEPLOYING
+# Install pyenv, then install python versions
+RUN git clone --depth 1 https://github.com/pyenv/pyenv.git $PYENV_HOME && \
+    rm -rfv $PYENV_HOME/.git
+
+ENV PATH $PYENV_HOME/shims:$PYENV_HOME/bin:$PATH
+
+RUN pyenv install $PYTHON_VERSION
+RUN pyenv global $PYTHON_VERSION
+RUN pip install --upgrade pip && pyenv rehash
+
+# Cleaning pip cache
+RUN rm -rf ~/.cache/pip
 #
 # Install all the required packages
 #
-RUN apk add --no-cache python3 \
+RUN apk add --no-cache \
     py-pillow py-requests py-sqlalchemy py-psycopg2 git py-lxml \
     libxslt-dev py-pip libxml2 libxml2-dev libpq postgresql-dev \
-    postgresql build-base python-dev python3-dev \
+    postgresql build-base linux-headers jpeg-dev \
     curl neofetch git sudo
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
