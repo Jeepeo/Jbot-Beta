@@ -60,6 +60,8 @@ RUN adduser userbot wheel
 USER userbot
 WORKDIR /home/userbot/userbot
 COPY ./requirements.txt /home/userbot/userbot
+# Cleaning pip cache
+RUN rm-rf ~/.cache/pip
 #
 # Install requirements
 #
