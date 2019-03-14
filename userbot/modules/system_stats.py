@@ -109,6 +109,6 @@ async def amireallyalive(e):
             f"Telegram-Userbot: {bot_version} \n"
             f"Telethon version: {version.__version__} \n"
             f"Python version  : {python_version()} \n"
-            f"Usernam         : Jeepe055"
+            f"Username        : Jeepe055"
             "`"
             )

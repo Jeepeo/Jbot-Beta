@@ -65,6 +65,8 @@ COPY ./requirements.txt /home/userbot/userbot
 #
 RUN sudo pip3 install -U pip
 RUN sudo pip3 install -r requirements.txt
+# Removal PIP package caching
+RUN rm -rf ~/.cache/pip
 #
 # Copy bot files to /app
 #
