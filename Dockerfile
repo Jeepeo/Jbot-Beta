@@ -19,7 +19,7 @@ RUN apk add --no-cache --update \
     build-base
 
 # Set Python version
-ARG PYTHON_VERSION='3.7.2'
+ARG PYTHON_VERSION='3.8-dev'
 # Set pyenv home
 ARG PYENV_HOME=/root/.pyenv
 # Note installing THROUGH THIS METHOD WILL DELAY DEPLOYING
@@ -42,9 +42,16 @@ RUN apk add --no-cache \
     py-pillow py-requests py-sqlalchemy py-psycopg2 git py-lxml \
     libxslt-dev py-pip libxml2 libxml2-dev libpq postgresql-dev \
     postgresql build-base linux-headers jpeg-dev \
-    curl neofetch git sudo
+    curl neofetch git sudo gcc python-dev python3-dev \
+    postgresql postgresql-client php-pgsql \
+    musl postgresql-dev
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
+# Installing psycopg2
+RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
+&& cd psycopg2 \
+&& python setup.py install
+
 # Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
