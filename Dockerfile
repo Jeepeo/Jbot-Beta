@@ -48,7 +48,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
 # Installing Telethon externally
-RUN https://github.com/LonamiWebs/Telethon Telethon \
+RUN git clone https://github.com/LonamiWebs/Telethon Telethon \
 && cd Telethon \
 && python setup.py install 
 # Installing psycopg2
