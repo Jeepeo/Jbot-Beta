@@ -47,6 +47,10 @@ RUN apk add --no-cache \
     musl postgresql-dev
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
+# Installing Telethon externally
+RUN https://github.com/LonamiWebs/Telethon Telethon \
+&& cd Telethon \
+&& python setup.py install 
 # Installing psycopg2
 RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
 && cd psycopg2 \
@@ -62,14 +66,12 @@ RUN adduser userbot --disabled-password --home /home/userbot
 RUN adduser userbot wheel
 USER userbot
 WORKDIR /home/userbot/userbot
-COPY ./requirements.txt /home/userbot/userbot
-# Cleaning pip cache
-RUN rm-rf ~/.cache/pip
+COPY ./requirementsDock.txt /home/userbot/userbot
 #
 # Install requirements
 #
 RUN sudo pip3 install -U pip
-RUN sudo pip3 install -r requirements.txt
+RUN sudo pip3 install -r requirementsDock.txt
 # Removal PIP package caching
 RUN rm -rf ~/.cache/pip
 #
