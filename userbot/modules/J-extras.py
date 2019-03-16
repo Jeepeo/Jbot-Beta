@@ -110,27 +110,23 @@ async def Oof(e):
         await e.edit(t)
 
 
-#SMK command for FUn ---------------------------------------------------------------------------
+#∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆ Below module is completely copyrighted to Jepeeo ∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆
 
 @register(outgoing=True, pattern="^.smk (.*)")
-async def smrk(e):
-        if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-            textx = await e.get_reply_message()
-        message=e.text
+async def smrk(smk):
+        if not smk.text[0].isalpha() and smk.text[0] not in ("/", "#", "@", "!"):
+            textx = await smk.get_reply_message()
+            message = smk.text
         if message[5:]:
             message = str(message[5:])
         elif textx:
             message = textx
             message = str(message.message)
-        reactor = [
-                "ツ",
-        ]
-        reply_text = re.sub(r"(r|l)", "w", message)
-        reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
-        reply_text = re.sub(r"\!+", " " + random.choice(reactor), reply_text)
-        reply_text += " " + random.choice(reactor)
-        await e.edit(reply_text)
-
+        smirk = " ツ"
+        reply_text = message + smirk
+        await smk.edit(reply_text)
+        
+# =======================================================================================
 
 @register(outgoing=True, pattern="^.repeat (.*) (.*)")
 async def repeat(rep):
