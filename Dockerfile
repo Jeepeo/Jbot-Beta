@@ -60,8 +60,8 @@ RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
 RUN adduser userbot --disabled-password --home /home/userbot
 RUN adduser userbot wheel
 USER userbot
-RUN sudo git clone https://github.com/jeepeo/Jbot userbot
-WORKDIR /userbot
+RUN git clone https://github.com/jeepeo/Jbot userbot
+WORKDIR /home/userbot/userbot
 
 #
 # Install requirements
