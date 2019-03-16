@@ -1,3 +1,7 @@
+from telethon import events
+from userbot import register
+
+
 @register(outgoing=True, pattern="^.userid$")
 async def chatidgetter(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
