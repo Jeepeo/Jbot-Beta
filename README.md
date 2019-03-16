@@ -32,6 +32,7 @@ announcements you can join the [news channel](https://t.me/maestro_userbot_chann
 
 If you find any bugs or have any suggestions then don't hesitate to contact me in [my support group](https://t.me/userbot_support).
 
+<<<<<<< HEAD
 - This README is not guaranteed to always be up to date, refer to the [support channel](https://t.me/maestro_userbot_channel) for the latest informations.
 
 ## Getting your own userbot up and running:
@@ -233,6 +234,9 @@ Use asynchronous functions, and await the functions.
 
 Should you need assistance with telethon library check out their [documentation](http://telethon.readthedocs.io/) or get support from [them](https://t.me/TelethonChat)
 
+=======
+Please head to the wiki on instructions to setting it up!
+>>>>>>> 6c5b29d... Helper: Adding helpers at all modules, also split up misc
 
 ### Credits:
 

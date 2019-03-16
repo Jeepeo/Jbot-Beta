@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.b (the "License");
 # you may not use this file except in compliance with the License.
 #
+# You can find misc modules, which dont fit in anything xD
 
 from random import randint
 from subprocess import PIPE
@@ -13,9 +14,10 @@ import hastebin
 import pybase64
 from requests import get, post
 
-from userbot import LOGGER, LOGGER_GROUP
+from userbot import LOGGER, LOGGER_GROUP, HELPER
 from userbot.events import register
 
+<<<<<<< HEAD
 DOGBIN_URL = "https://del.dog/"
 
 
@@ -164,22 +166,8 @@ async def hash(e):
             await e.reply(ans)
 
 
-@register(outgoing=True, pattern="^.base64 (en|de) (.*)")
-async def endecrypt(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        if e.pattern_match.group(1) == "en":
-            lething = str(pybase64.b64encode(bytes(e.pattern_match.group(2), "utf-8")))[
-                2:
-            ]
-            await e.reply("Encoded: `" + lething[:-1] + "`")
-        else:
-            lething = str(
-                pybase64.b64decode(
-                    bytes(e.pattern_match.group(2), "utf-8"), validate=True
-                )
-            )[2:]
-            await e.reply("Decoded: `" + lething[:-1] + "`")
-
+@register(outgoing=
+>>>>>>> 6c5b29d... Helper: Adding helpers at all modules, also split up misc
 
 @register(outgoing=True, pattern="^.random")
 async def randomise(e):
@@ -187,12 +175,6 @@ async def randomise(e):
         r = (e.text).split()
         index = randint(1, len(r) - 1)
         await e.edit("**Query: **\n`" + e.text + "`\n**Output: **\n`" + r[index] + "`")
-
-
-@register(outgoing=True, pattern="^.chatid$")
-async def chatidgetter(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("Chat ID: `" + str(e.chat_id) + "`")
 
 
 @register(outgoing=True, pattern="^.sleep( [0-9]+)?$")
@@ -228,12 +210,17 @@ async def killdabot(e):
 @register(outgoing=True, pattern="^.support$")
 async def bot_support(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+<<<<<<< HEAD
         await e.edit("Report Damn bugs here: @userbot_support")
+=======
+        await e.edit("Link Portal: @userbot_support")
+>>>>>>> 6c5b29d... Helper: Adding helpers at all modules, also split up misc
 
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+<<<<<<< HEAD
         await e.edit("https://github.com/jeepeo/")
 
 
@@ -307,3 +294,6 @@ async def keep_read(e):
         for i in K:
             if i.groupid == str(e.chat_id):
                 await e.client.send_read_acknowledge(e.chat_id)
+=======
+        await e.edit("https://github.com/baalajimaestro/Telegram-UserBot/")
+>>>>>>> 6c5b29d... Helper: Adding helpers at all modules, also split up misc

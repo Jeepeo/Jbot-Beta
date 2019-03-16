@@ -4,8 +4,7 @@ import urllib.request
 
 from PIL import Image
 from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
-
-from userbot import bot
+from userbot import bot, HELPER
 from userbot.events import register
 
 
@@ -115,3 +114,8 @@ async def kang(args):
                     await bot.send_read_acknowledge(conv.chat_id)
 
             await args.edit(f"Sticker added! Your pack can be found [here](t.me/addstickers/{packname})", parse_mode='md')
+            await args.edit(f"sticker added! Your pack can be found [here](t.me/addstickers/{packname})", parse_mode='md')
+
+HELPER.update({
+    "kang": "Kang very important module. Please kang this. Made by @rupansh"
+})

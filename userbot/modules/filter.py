@@ -14,7 +14,7 @@ from sqlalchemy import (Boolean, Column, Integer, String, UnicodeText,
                         distinct, func)
 from telethon import TelegramClient, events
 
-from userbot import LOGGER, LOGGER_GROUP
+from userbot import LOGGER, LOGGER_GROUP, HELPER
 from userbot.events import register
 
 
@@ -102,3 +102,13 @@ async def filters_active(e):
         for i in filters:
             transact = transact + "🔹 " + i.keyword + "\n"
         await e.edit(transact)
+
+HELPER.update({
+    "filters": "list all active filters in this chat"
+})
+HELPER.update({
+    "filter <keyword> <reply message>": "add a filter to this chat. The bot will now reply that message whenever 'keyword'is mentioned. If you reply to a sticker with a keyword, the bot will reply with that sticker. NOTE: all filter keywords are in lowercase."
+})
+HELPER.update({
+    "stop  <filter>": "stop that filter."
+})
