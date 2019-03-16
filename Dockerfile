@@ -57,9 +57,6 @@ RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
 && python setup.py install
 
 # Copy Python Requirements to /app
-RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
-&& cd psycopg2 \
-&& python setup.py install
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
 RUN adduser userbot --disabled-password --home /home/userbot
