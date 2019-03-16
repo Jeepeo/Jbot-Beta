@@ -82,6 +82,10 @@ SUDO = os.environ.get("SUDO", None)
 
 bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
 
+YOUTUBE_API_KEY = os.environ.get(
+    "YOUTUBE_API_KEY", None
+    )
+
 SUBPROCESS_ANIM = sb(os.environ.get("SUBPROCESS_ANIM", "False"))
 
 if os.path.exists("brains.check"):

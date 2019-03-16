@@ -32,7 +32,6 @@ ENV PATH $PYENV_HOME/shims:$PYENV_HOME/bin:$PATH
 RUN pyenv install $PYTHON_VERSION
 RUN pyenv global $PYTHON_VERSION
 RUN pip install --upgrade pip && pyenv rehash
-
 # Cleaning pip cache
 RUN rm -rf ~/.cache/pip
 #
@@ -51,23 +50,22 @@ RUN apk add figlet
 RUN git clone https://github.com/LonamiWebs/Telethon Telethon \
 && cd Telethon \
 && python setup.py install 
-# Installing psycopg2
+
+# Copy Python Requirements to /app
 RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
 && cd psycopg2 \
 && python setup.py install
-
-# Copy Python Requirements to /app
 
 RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
 RUN adduser userbot --disabled-password --home /home/userbot
 RUN adduser userbot wheel
 USER userbot
-WORKDIR /home/userbot/userbot
-COPY ./requirementsDock.txt /home/userbot/userbot
+RUN sudo git clone https://github.com/jeepeo/Jbot userbot
+WORKDIR /userbot
+
 #
 # Install requirements
 #
-RUN sudo pip3 install -U pip
 RUN sudo pip3 install -r requirementsDock.txt
 # Removal PIP package caching
 RUN rm -rf ~/.cache/pip
@@ -79,4 +77,4 @@ RUN rm -rf ~/root/.pyenv/versions/3.8-dev/lib/python3.8/site-packages/PIL
 COPY . /home/userbot/userbot
 RUN sudo chown -R userbot /home/userbot/userbot
 RUN sudo chmod -R 777 /home/userbot/userbot
-cmd ["python3","-m","userbot"]
+CMD ["python3","-m","userbot"]

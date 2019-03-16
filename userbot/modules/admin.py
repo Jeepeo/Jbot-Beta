@@ -15,7 +15,9 @@ from telethon.tl.functions.channels import (EditAdminRequest,
 from telethon.tl.types import (ChatAdminRights, ChatBannedRights,
                                MessageMediaDocument, MessageMediaPhoto)
 
-from userbot import (BRAIN_CHECKER, LOGGER, LOGGER_GROUP, HELPER)
+from telethon.tl.types import ChatAdminRights, ChatBannedRights
+
+from userbot import (BRAIN_CHECKER, LOGGER, LOGGER_GROUP, HELPER, bot)
 from userbot.events import register
 
 #=================== CONSTANT ===================
