@@ -71,6 +71,8 @@ RUN sudo pip3 install -U pip
 RUN sudo pip3 install -r requirementsDock.txt
 # Removal PIP package caching
 RUN rm -rf ~/.cache/pip
+# Fixing kang module
+RUN rm -rf ~/root/.pyenv/versions/3.8-dev/lib/python3.8/site-packages/PIL
 #
 # Copy bot files to /app
 #
