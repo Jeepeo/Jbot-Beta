@@ -190,7 +190,7 @@ async def lang(e):
 @register(outgoing=True, pattern="^.yt (.*)")
 async def yt_search(video_q):
     if not video_q.text[0].isalpha() and video_q.text[0] not in ("/", "#", "@", "!"):
-        query = video_q.pattern_match.group(1)t
+        query = video_q.pattern_match.group(1)
         result = ''
 
         full_response = youtube_search(query)
