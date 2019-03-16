@@ -10,7 +10,7 @@ import requests
 async def _(event):
     if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(1000)
     DELIMITER = "|"
     if DELIMITER not in input_str:
         await event.edit("Invalid Syntax")

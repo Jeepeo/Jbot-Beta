@@ -1,6 +1,5 @@
 # Note this only for this repo with latest
-# First replace api id and hash with yours
-# Then run this python file locally command "python -m string_session.py"
+# Run this python file locally command "python -m string_session.py"
 # Then login your TG account
 # You will get random numbers and letters(string) , Ending with '=' 
 # Now copy that 
@@ -10,7 +9,8 @@
 
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
+from userbot import API_KEY, API_HASH
 
-with TelegramClient(StringSession(), "your-api-id", "your-api-hash") as client:
+with TelegramClient(StringSession(), API_KEY, API_HASH) as client:
     print(client.session.save())
 
