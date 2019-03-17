@@ -22,9 +22,6 @@ async def kang(args):
         username = user.username
         if not username:
             username = user.first_name
-        packname = f"a{userid}_by_{username}_{PACK}"
-        response = urllib.request.urlopen(urllib.request.Request(f'http://t.me/addstickers/{packname}'))
-        htmlstr = response.read().decode("utf8").split('\n')
         message = await args.get_reply_message()
         photo = None
 
@@ -37,7 +34,7 @@ async def kang(args):
                 await bot.download_file(message.media.document, photo)
                 if DocumentAttributeFilename(file_name='sticker.webp') in message.media.document.attributes:
                     EMOJI = message.media.document.attributes[1].alt
-                    EMOJIBYPASS = true
+                    EMOJIBYPASS = True
             else:
                 await args.edit("`Unsupported File!`")
                 return
@@ -69,6 +66,9 @@ async def kang(args):
             if not EMOJIBYPASS:
                 EMOJI = "🤔"
             PACK = "1"
+            packname = f"a{userid}_by_{username}_{PACK}"
+            response = urllib.request.urlopen(urllib.request.Request(f'http://t.me/addstickers/{packname}'))
+            htmlstr = response.read().decode("utf8").split('\n')
             if len(s) == 3:
               PACK = s[2]     #User sent both
               EMOJI = s[1]
