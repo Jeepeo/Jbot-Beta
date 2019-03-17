@@ -10,7 +10,7 @@ import os
 import requests
 from telethon import TelegramClient, events
 
-from userbot import SCREENSHOT_LAYER_ACCESS_KEY
+from userbot import SCREENSHOT_LAYER_ACCESS_KEY, HELPER
 from userbot.events import register
 
 

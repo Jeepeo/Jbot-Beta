@@ -9,7 +9,7 @@ from datetime import datetime
 
 import speedtest
 from telethon import functions
-
+from userbot import HELPER
 from userbot.events import register
 
 import subprocess

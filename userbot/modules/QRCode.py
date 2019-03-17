@@ -12,7 +12,7 @@ from datetime import datetime
 import requests
 from telethon import TelegramClient, events
 
-from userbot import LOGGER, LOGGER_GROUP
+from userbot import LOGGER, LOGGER_GROUP, HELPER
 from userbot.events import register
 
 download_directory = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./downloads/")
