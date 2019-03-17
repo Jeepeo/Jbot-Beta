@@ -47,12 +47,12 @@ RUN apk add --no-cache \
 RUN apk add --no-cache sqlite
 RUN apk add figlet 
 # Installing Telethon externally
-RUN git clone https://github.com/LonamiWebs/Telethon Telethon \
+RUN git clone https://www.github.com/LonamiWebs/Telethon Telethon \
 && cd Telethon \
 && python setup.py install 
 
 # Copy Python Requirements to /app
-RUN git clone https://github.com/psycopg/psycopg2 psycopg2 \
+RUN git clone https://www.github.com/psycopg/psycopg2 psycopg2 \
 && cd psycopg2 \
 && python setup.py install
 
@@ -60,7 +60,7 @@ RUN  sed -e 's;^# \(%wheel.*NOPASSWD.*\);\1;g' -i /etc/sudoers
 RUN adduser userbot --disabled-password --home /home/userbot
 RUN adduser userbot wheel
 USER userbot
-RUN sudo git clone https://github.com/jeepeo/Jbot userbot
+RUN sudo git clone https://www.github.com/jeepeo/Jbot userbot
 WORKDIR /userbot
 
 #
