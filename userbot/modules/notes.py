@@ -6,7 +6,7 @@
 #
 from telethon import events
 
-from userbot import LOGGER, LOGGER_GROUP, bot
+from userbot import LOGGER, LOGGER_GROUP, HELPER, bot
 from userbot.events import register
 
 
