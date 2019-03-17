@@ -6,16 +6,17 @@ import asyncio
 import requests
 
 
-@register(outgoing=True, pattern="^.kod (.*)")
+@register(outgoing=True, pattern="^.kod")
 async def _(event):
     if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1000)
-    DELIMITER = "|"
-    if DELIMITER not in input_str:
-        await event.edit("Invalid Syntax")
-        return False
-    lang, code = input_str.split(DELIMITER)
+    textx = await event.get_reply_message()
+    code = event.text
+    if code[8:]:
+            code = str(code[8:])
+    elif textx:
+            code = str(textx.message)
+    lang = 'python'
     url = "http://apikuu.herokuapp.com/api/v0/sakty/karbon"
     a = requests.get(url, params={
         "code": code,
